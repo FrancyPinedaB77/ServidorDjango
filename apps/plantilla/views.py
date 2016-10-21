@@ -1,8 +1,8 @@
-import matplotlib.pyplot as plt
+
 from django.shortcuts import render
 from django.http import HttpResponseRedirect,HttpResponse
 from django.http import JsonResponse
-from pylab import randn, hist
+
 import os
 import sys
 import json 
@@ -40,7 +40,7 @@ def taller3(request):
 
     texto =5
     conn = Connection()
-    texto = conn.db.pertemas.find_one()
+    texto = conn.db.pertemas.find_one().get("cantidad")
 
 
     return render(request, "taller3.html",{"texto":texto})
