@@ -1,6 +1,8 @@
+import matplotlib.pyplot as plt
 from django.shortcuts import render
 from django.http import HttpResponseRedirect,HttpResponse
 from django.http import JsonResponse
+from pylab import randn, hist
 import os
 import sys
 import json 
@@ -31,8 +33,11 @@ def index(request):
 
 def grafo(request):
     return render(request, "grafo.html")
-
+array=[]
 def taller3(request):
+    print "cambios en la vista de taller 3"
+
+
     return render(request, "taller3.html")
 
 pais=""

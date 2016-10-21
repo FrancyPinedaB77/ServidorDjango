@@ -40,6 +40,15 @@ INSTALLED_APPS = [
     'apps.plantilla',
 ]
 
+# COLOCANDO LA CONEXIONA  A MONGO EN EL CLUSTER 
+
+#_MONGODB_USER
+
+
+#
+
+
+
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

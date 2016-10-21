@@ -6,12 +6,125 @@
 
 {% block content %}
 
-    <img src="/static/images/underconstruction.jpg">  
+    <!--
+    <img src="/static/images/underconstruction.jpg">  -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Usuario', 'Positivo', 'Negativo', 'PocoNegativo', 'PocoPositivo', 'Neutro'],
+          ['2014', 1000, 400, 200,500,150]
+
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Tweets por Usuario',
+
+          },
+          bars: 'horizontal' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
 
     <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Usuario', 'Sales', 'Expenses', 'Profit'],
+          ['2014', 1000, 400, 200],
+          ['2015', 660, 1120, 300],
+          ['2016', 1030, 540, 350]
+        ]);
 
-     
-    </script>
-    <div id="taller3"></div>
+        var options = {
+          chart: {
+            title: 'Indices por Sentimientos',
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('histograma'));
+
+        chart.draw(data, options);
+      }
+    </script>    
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Usuario', 'Sales', 'Expenses', 'Profit'],
+          ['2014', 1000, 400, 200],
+
+          ['2017', 1030, 540, 350]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Porcentaje por tweets por Hashtag',
+
+          },
+          bars: 'horizontal' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('Visual2'));
+
+        chart.draw(data, options);
+      }
+    </script> 
+
+
+
+    <script type="text/javascript"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <div id="taller3">
+
+    <div class="col-md-4">
+    <div class="form-group">
+        <br>
+        <label for="usr">Ingrese nombre de usuario:</label>
+        <input type="text" class="form-control" id="ok">
+    </div>    
+    <!--Histograma -->
+    <div id="barchart_material" style="width: 400px; height: 250px;"></div>
+    <!--TERMINAN LOS CAMBIOS  -->
+    </div>  
+
+    <div class="col-md-4">
+    <div class="form-group">
+        <br>
+        <label for="usr">IHistorial de Seguidores:</label>
+        <input type="text" class="form-control" id="ok">
+    </div> 
+
+    <div id="histograma" style="width: 400px; height: 250px;"></div>
+    </div>
+
+    <div class="col-md-4">
+    <div class="form-group">
+        <br>
+        <label for="usr">Ingrese nombre hashtag23:</label>
+        <input type="text" class="form-control" id="ok">
+    </div> 
+
+    <div id="Visual2" style="width: 400px; height: 250px;"></div>
+    </div>
+
+
+    </div>
 
 {% endblock%}
