@@ -7,6 +7,7 @@ import os
 import sys
 import json 
 import glob
+from conexionmongo import Connection
 
 
 reload(sys)  # Reload does the trick!
@@ -37,8 +38,12 @@ array=[]
 def taller3(request):
     print "cambios en la vista de taller 3"
 
+    texto =5
+    conn = Connection()
+    texto = conn.db.pertemas.find_one()
 
-    return render(request, "taller3.html")
+
+    return render(request, "taller3.html",{"texto":texto})
 
 pais=""
 def mygraph(request):
