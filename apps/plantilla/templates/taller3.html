@@ -97,7 +97,8 @@
     <div class="form-group">
         <br>
         <label for="usr">Ingrese nombre de usuario:</label>
-        <input type="text" class="form-control" id="ok">
+        <input type="text" class="form-control" id="caja1">
+        <input id="bpintar" class="btn btn-success" type="button" value="Cargar" onclick=" javascript:cargar1()">
     </div>    
     <!--Histograma -->
     <div id="barchart_material" style="width: 400px; height: 250px;"></div>
@@ -108,7 +109,9 @@
     <div class="form-group">
         <br>
         <label for="usr">IHistorial de Seguidores:</label>
-        <input type="text" class="form-control" id="ok">
+        <input type="text" class="form-control" id="caja2">
+        <input id="bpintar" class="btn btn-success" type="button" value="Cargar" onclick=" javascript:cargar1()">
+
     </div> 
 
     <div id="histograma" style="width: 400px; height: 250px;"></div>
@@ -118,11 +121,36 @@
     <div class="form-group">
         <br>
         <label for="usr">Ingrese nombre hashtag23:</label>
-        <input type="text" class="form-control" id="ok">
+        <input type="text" class="form-control" id="caja3">
+        <input id="bpintar" class="btn btn-success" type="button" value="Cargar" onclick=" javascript:cargar1()">
     </div> 
 
     <div id="Visual2" style="width: 400px; height: 250px;"></div>
     </div>
+
+    <script type="text/javascript">
+         function cargar1(mynodes, myedges){
+            // create an array with nodes
+            var nodes = new vis.DataSet(mynodes);
+
+            // create an array with edges
+            var edges = new vis.DataSet(myedges);
+
+            // create a network
+            var container = document.getElementById('migrafo');
+            var data = {
+                nodes: nodes,
+                edges: edges
+            };
+            var options = {};
+            var network = new vis.Network(container, data, options);
+
+        }
+
+
+
+
+    </script>
 
 
     </div>
