@@ -95,39 +95,39 @@
     <div id="taller3">
 
     <div class="col-md-4">
-    <div class="form-group">
-        <br>
-        <label for="usr">Ingrese nombre de usuario:</label>
-        <input type="text" class="form-control" id="caja1">
-        <input id="bpintar" class="btn btn-success" type="button" value="Cargar" onclick=" javascript:cargar1()">
-    </div>    
-    <!--Histograma -->
+ 	   <div class="form-group">
+		<form action="usuario" method="post">
+			<label for="usuario">Nombre del usuario de tweeter</label>
+			<input id="usuario" type="text" name="Ingrese el username" value="{{ current_name }}">
+			<input type="submit" class="btn btn-success"  value="Consultar">
+		</form>
+	   </div> 
     <div id="barchart_material" style="width: 400px; height: 250px;"></div>
-    <!--TERMINAN LOS CAMBIOS  -->
     </div>  
 
     <div class="col-md-4">
     <div class="form-group">
-        <br>
-        <label for="usr">IHistorial de Seguidores:</label>
-        <input type="text" class="form-control" id="caja2">
-        <input id="bpintar" class="btn btn-success" type="button" value="Cargar" onclick=" javascript:cargar1()">
-
-    </div> 
-
-    <div id="histograma" style="width: 400px; height: 250px;"></div>
+		<form action="numtuits" method="post">
+			<label for="numtuits">Nombre del usuario de tweeter</label>
+			<input id="numtuits" type="text" name="Usuario a consultar" value="{{ current_name }}">
+			<input type="submit" class="btn btn-success"  value="Consultar">
+		</form>
     </div>
+    <div id="histograma" style="width: 400px; height: 250px;"></div>
+	</div> 
 
     <div class="col-md-4">
     <div class="form-group">
-        <br>
-        <label for="usr">Ingrese nombre hashtag23:</label>
-        <input type="text" class="form-control" id="caja3">
-        <input id="bpintar" class="btn btn-success" type="button" value="Cargar" onclick=" javascript:cargar1()">
+		<form action="otro" method="post">
+			<label for="otro">Nombre del usuario de tweeter</label>
+			<input id="otro" type="text" name="Usuario a consultar" value="{{ current_name }}">
+			<input type="submit" class="btn btn-success"  value="Consultar">
+		</form>
     </div> 
 
     <div id="Visual2" style="width: 400px; height: 250px;"></div>
     </div>
+
 
     <script type="text/javascript">
          function cargar1(mynodes, myedges){

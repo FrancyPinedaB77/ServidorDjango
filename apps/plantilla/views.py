@@ -38,7 +38,6 @@ array=[]
 def taller3(request):
     print "cambios en la vista de taller 3"
 
-    texto =5
     conn = Connection()
     texto = conn.db.pertemas.find_one().get("cantidad")
 
