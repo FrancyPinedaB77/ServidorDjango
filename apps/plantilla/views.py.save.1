@@ -46,21 +46,15 @@ def taller3(request):
         form = form_usuario(request.POST)
         if form.is_valid():
             algo= form.cleaned_data['usuario']
-	    nombre_usuario=algo
-            e= conn.db.pertemas.find_one({"user.screen_name":algo})
-	    numero_seguidores= e["user"]["followers_count"]
-            consulta_amigos= conn.db.pertemas.find_one({"user.screen_name":algo})
-	    amigos= consulta_amigos["user"]["friends_count"]
-	    print amigos
-	    #print e.user.followers_count
+            texto = conn.db.pertemas.find_one({"user.screen_name":algo}).get("user.followers_count")
+	    print algo
+		
     else:
-        form = form_usuario()
-	numero_seguidores=""
-	nombre_usuario=""
-	amigos=""
+        form = form_usuario();
+	texto="";
 
 
-    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos})
+    return render(request, "taller3.html",{"form":form, "texto":texto})
 
 def tagcloud(request):
    

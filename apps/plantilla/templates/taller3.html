@@ -5,46 +5,59 @@
 {% endblock%}
 
 {% block content %}
-<h1>mi texto es {{texto}} </h1>
+<h1>mi texto es {{amigos}} </h1>
 
-    <!--
+       <!--
     <img src="/static/images/underconstruction.jpg">  -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
+      google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Usuario', 'Positivo', 'Negativo', 'PocoNegativo', 'PocoPositivo', 'Neutro'],
-          ['2014', {{texto}}, 400, 200,500,150]
+      
+	  function drawChart() {
 
-        ]);
+		var data = new google.visualization.DataTable();
+         data.addColumn('string', 'Country');
+         data.addColumn('number', 'GDP');
+         data.addRows([
+           ['US', 16768100],
+           ['China', 9181204],
+           ['Japan', 4898532],
+           ['Germany', 3730261],
+           ['France', 2]
+         ]);
 
-        var options = {
-          chart: {
-            title: 'Tweets por Usuario',
+		var options = { title: 'Company Performance',
+		vAxis: {scaleType: 'mirrorLog' }
 
-          },
-          bars: 'horizontal' // Required for Material Bar Charts.
-        };
+		};
 
-        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+        var chart = new google.visualization.ColumnChart(document.getElementById('barchart_material'));
 
-        chart.draw(data, options);
+ 		chart.draw(data, options);
       }
     </script>
 
 
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
+      google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Usuario', 'Sales', 'Expenses', 'Profit'],
-          ['2014', 1000, 400, 200],
-          ['2015', 660, 1120, 300],
-          ['2016', 1030, 540, 350]
-        ]);
+        var data =  new google.visualization.DataTable()
+		data.addColumn('number','usuario');
+		data.addColumn('number','Sales');
+		data.addColumn('number','Expenses');
+		data.addColumn('number','Profit');
+
+		data.addRows([
+		[20,30,50,80],
+		[1, 1000, 400, 200],
+		[200, 1000, 400, 200],
+		[300, 1000, 400, 200]
+		]);
 
         var options = {
           chart: {
@@ -53,21 +66,20 @@
           bars: 'vertical' // Required for Material Bar Charts.
         };
 
-        var chart = new google.charts.Bar(document.getElementById('histograma'));
+        var chart = new google.visualization.BarChart(document.getElementById('histograma'));
 
         chart.draw(data, options);
       }
     </script>    
 
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
+      google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Usuario', 'Sales', 'Expenses', 'Profit'],
-          ['2014', 1000, 400, 200],
+        var data =  google.visualization.arrayToDataTable([
+           [' 2014', 'Positivo', 'Negativo', 'PocoNegativo', 'PocoPositivo', 'Neutro'],
+			['2017',100, 400, 200,500,150]
 
-          ['2017', 1030, 540, 350]
         ]);
 
         var options = {
@@ -78,7 +90,7 @@
           bars: 'horizontal' // Required for Material Bar Charts.
         };
 
-        var chart = new google.charts.Bar(document.getElementById('Visual2'));
+        var chart = new google.visualization.BarChart(document.getElementById('Visual2'));
 
         chart.draw(data, options);
       }
@@ -96,11 +108,16 @@
 
     <div class="col-md-4">
  	   <div class="form-group">
-		<form action="usuario" method="post">
-			<label for="usuario">Nombre del usuario de tweeter</label>
-			<input id="usuario" type="text" name="Ingrese el username" value="{{ current_name }}">
-			<input type="submit" class="btn btn-success"  value="Consultar">
-		</form>
+	<form method="post">
+    {% csrf_token %}
+    {{ form}}
+
+
+
+    <input type="submit" value="Submit" />
+</form>		
+
+
 	   </div> 
     <div id="barchart_material" style="width: 400px; height: 250px;"></div>
     </div>  

@@ -49,18 +49,16 @@ def taller3(request):
 	    nombre_usuario=algo
             e= conn.db.pertemas.find_one({"user.screen_name":algo})
 	    numero_seguidores= e["user"]["followers_count"]
-            consulta_amigos= conn.db.pertemas.find_one({"user.screen_name":algo})
-	    amigos= consulta_amigos["user"]["friends_count"]
-	    print amigos
+	    amigos=e["user"]["followers_count"]
 	    #print e.user.followers_count
     else:
         form = form_usuario()
 	numero_seguidores=""
+
 	nombre_usuario=""
-	amigos=""
 
 
-    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos})
+    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario})
 
 def tagcloud(request):
    
