@@ -1,11 +1,7 @@
 from django import forms
 
-class forms_inicio(forms.Form):
-    usuario = forms.CharField(label='usuario', max_length=20)
-    numtuits = forms.CharField(label='numtuits', max_length=20)
-    otro = forms.CharField(label='otro', max_length=20)
-
 class form_usuario(forms.Form):
-    CHOICES = (('JuanManSantos', 'Juan Manuel Santos'),('AlvaroUribeVel', 'Alvaro Uribe Velez'),)
+    #CHOICES = (('JuanManSantos', 'Juan Manuel Santos'),('AlvaroUribeVel', 'Alvaro Uribe Velez'),('petrogustavo','Gustavo Petro'))
+    CHOICES = (('JuanManSantos', 'Juan Manuel Santos'),('AlvaroUribeVel', 'Alvaro Uribe Velez'),('petrogustavo','Gustavo Petro'),('mluciaramirez', 'Martha Lucia Ramirez'),('AABenedetti', 'Armando Benedetti'),('ERobledo', 'Jorgue Enrique Robledo'),('IvanCepedaCast', 'Ivan Cepeda Castro'),('piedadcordoba', 'Piedad Cordoba'),('AntanasMockus', 'Antanas Mokus'),('jcvelezuribe', 'Juan Carlos Velez Uribe'),('DanielSamperO', 'Daniel Samper Ospina'),('saludhernandezm', 'Salud Hernandez Mora'),('CristoBustos', 'Juan Fernando Cristo'),('sergio_fajardo', 'Sergio Fajardo'),('Timochenko_FARC', 'Rodrigo Londono Echeverry'),('IvanMarquezFARC', 'Ivan Marquez'),('German_Vargas', 'German Vargas Lleras'),('ELTIEMPO', 'Periodico El Tiempo'),('ClaudiaLopez', 'Claudia Lopez Hernandez'),('RevistaSemana', 'Revista Semana'),('VickyDavilaH', 'Vicky Davila H'))
     usuario = forms.ChoiceField(choices=CHOICES)
 
