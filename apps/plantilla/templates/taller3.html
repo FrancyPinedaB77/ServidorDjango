@@ -49,17 +49,17 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Muy Negativo',     {{num_sent_muyn}}],
-          ['Negativo',      {{num_sent_n}}],
-          ['Neutro',  {{num_sent_neu}}],
-          ['Positivo', {{num_sent_p}}],
-          ['Muy positivo',    {{num_sent_muyp}}]
+          ['N-',     {{num_sent_muyn}}],
+          ['N',      {{num_sent_n}}],
+          ['NEUTRO',  {{num_sent_neu}}],
+          ['P', {{num_sent_p}}],
+          ['P+',    {{num_sent_muyp}}]
         ]
 
 		);
 
         var options = {
-          title: 'Sentimientos de los tweets',
+          title: 'Sentimientos de los tweets con muestra de {{total_polarida}}',
           is3D: true,
         };
 

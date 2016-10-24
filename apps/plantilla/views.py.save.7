@@ -132,24 +132,22 @@ def taller3(request):
 	    	num_sent_muyp=num_sent_muyp+1
             sentimiento_muyn =conn.db.polaridad.find({"$and":[{"tweet":{"$regex":algo}},{"sentimiento":"N-"}]})
 	    for muyn in sentimiento_muyn:
-	    	num_sent_muyn=num_sent_muyn+1
-	    total_polarida=num_sent_muyn+num_sent_muyp+num_sent_n+num_sent_p+num_sent_neu
+	    	num_sent_muyn=num_sent_n+1
+
 
     else:
         form = form_usuario()
 	numero_seguidores=""
 	nombre_usuario=""
 	amigos=""
-	num_sent_p=""
+	num_sent_p=
 	num_sent_n=""
 	num_sent_neu=""
 	num_sent_muyp=""
-	num_sent_muyn=0
-	total_polarida=0
+	num_sent_muyn=""
 
 
-
-    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos,"num_sent_p":num_sent_p,"num_sent_n":num_sent_n,"num_sent_neu":num_sent_neu,"num_sent_muyp":num_sent_muyp,"num_sent_muyn":num_sent_muyn,"total_polarida":total_polarida})
+    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos,"num_sent_p":num_sent_p,"num_sent_n":num_sent_n,"num_sent_neu":num_sent_neu,"num_sent_muyp":num_sent_muyp,"num_sent_muyn":num_sent_muyn})
 
 def tagcloud(request):
    
