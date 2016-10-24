@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 from django.http import HttpResponseRedirect,HttpResponse
 from django.http import JsonResponse
@@ -109,45 +110,20 @@ def taller3(request):
 	    numero_seguidores= e["user"]["followers_count"]
             consulta_amigos= conn.db.pertemas.find_one({"user.screen_name":algo})
 	    amigos= consulta_amigos["user"]["friends_count"]
-	    alfa ="and"
-	    #CONSULTAS PARA SENTIMIENTO POSITIVO
-            sentimiento_p =conn.db.polaridad.find({"$and":[{"tweet":{"$regex":algo}},{"sentimiento":"P"}]})
-	    num_sent_p=0
-	    num_sent_n=0
-	    num_sent_neu=0
-	    num_sent_muyp=0
-	    num_sent_muyn=0
-	    for h in sentimiento_p:
-	    	num_sent_p=num_sent_p+1
-	    #CONSULTAS PARA SENTIMIENTO NEGATIVO
-            sentimiento_n =conn.db.polaridad.find({"$and":[{"tweet":{"$regex":algo}},{"sentimiento":"N"}]})
-	    num_sent_n
-	    for n in sentimiento_n:
-	    	num_sent_n=num_sent_n+1
-            sentimiento_neu =conn.db.polaridad.find({"$and":[{"tweet":{"$regex":algo}},{"sentimiento":"NEU"}]})
-	    for neu in sentimiento_neu:
-	    	num_sent_neu=num_sent_neu+1
-            sentimiento_muyp =conn.db.polaridad.find({"$and":[{"tweet":{"$regex":algo}},{"sentimiento":"P+"}]})
-	    for muyp in sentimiento_muyp:
-	    	num_sent_muyp=num_sent_muyp+1
-            sentimiento_muyn =conn.db.polaridad.find({"$and":[{"tweet":{"$regex":algo}},{"sentimiento":"N-"}]})
-	    for muyn in sentimiento_muyn:
-	    	num_sent_muyn=num_sent_n+1
+	    
+            #consulta sobre coleccion tuitsportemas
+	    
 
-
+	    
     else:
         form = form_usuario()
 	numero_seguidores=""
 	nombre_usuario=""
 	amigos=""
-	num_sent_p=""
-	num_sent_n=""
-	num_sent_neu=""
-	num_sent_muyp=""
-	num_sent_muyn=0
+	#sentimiento_p=""
 
 
-    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos,"num_sent_p":num_sent_p,"num_sent_n":num_sent_n,"num_sent_neu":num_sent_neu,"num_sent_muyp":num_sent_muyp,"num_sent_muyn":num_sent_muyn})
+    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos})
 
 def tagcloud(request):
    

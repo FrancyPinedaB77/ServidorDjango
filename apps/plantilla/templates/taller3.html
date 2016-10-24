@@ -7,6 +7,7 @@
 
 {% block content %}
 {% load staticfiles %}
+
 <h1>mi texto es {{amigos}} </h1>
 
        <!--
@@ -48,11 +49,11 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Negativo',     11],
-          ['Muy Negativo',      2],
-          ['Neutro',  2],
-          ['Positivo', 2],
-          ['Muy positivo',    7]
+          ['Muy Negativo',     {{num_sent_muyn}}],
+          ['Negativo',      {{num_sent_n}}],
+          ['Neutro',  {{num_sent_neu}}],
+          ['Positivo', {{num_sent_p}}],
+          ['Muy positivo',    {{num_sent_muyp}}]
         ]
 
 		);
