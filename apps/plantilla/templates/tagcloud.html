@@ -10,7 +10,15 @@
 {% load staticfiles %}
 	
 <h1>AQUI DEBE QUEDAR EL TAGCLOUD </h1>
+ <h1>mi texto es {{lista}} </h1>  
 
+ 	   <div class="form-group",class="btn btn-success">
+		<form method="post" >
+		    {% csrf_token %}
+		    {{ form}}
+		    <input type="submit" class="btn btn-success"  value="Consultar">
+		</form>		
+	   </div>  
 
 
 <div id="tagcloud" style="width: 600px; height: 350px;">
@@ -20,7 +28,7 @@
 	<script src="{% static 'js/jqcloud-1.0.4.js'%}"></script>
 	<link rel="stylesheet" href="{% static 'css/jqcloud.css'%}">
 
-      
+
 <script type="text/javascript">
 
 var word_array = [

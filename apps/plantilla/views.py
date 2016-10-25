@@ -9,6 +9,10 @@ import glob
 from conexionmongo import Connection
 from .forms import form_usuario
 
+from collections import Counter
+import re
+import smtplib
+from array import *
 
 reload(sys)  # Reload does the trick!
 sys.setdefaultencoding('UTF8')
@@ -135,7 +139,15 @@ def taller3(request):
 	    	num_sent_muyn=num_sent_muyn+1
 	    total_polarida=num_sent_muyn+num_sent_muyp+num_sent_n+num_sent_p+num_sent_neu
 	    #CONSULTAS PARA contar palabras dentro de los tuits
-            palabras_tuits= conn.db.pertemas.find({},{"text":1,"_id":0}).skip(12000)
+	    cons_palabras =conn.db.pertemas.find({},{"text":1,"_id":0})
+	    a=0
+	    arrayList = []
+ 	    for h in cons_palabras:
+	        a=a+1
+        	arrayList.append(h)
+	    #reg = re.compile('\S{3,}')
+	    reg = re.compile('([a-zA-Z]{3,}[^0-9])')
+	    lista = Counter(ma.group() for ma in reg.finditer(str(arrayList).strip('[]')))	
 	    #palabras_tuits=cp["text"]
 
 	    #CONSULTAS PARA CONOCER EL HISTORICO 
@@ -156,13 +168,15 @@ def taller3(request):
 	num_sent_muyp=""
 	num_sent_muyn=0
 	total_polarida=0
-	palabras_tuits=""
+	#palabras_tuits=""
 	#historico19=0
 	usuario=""
+	lista=[]
 
 
 
-    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos,"num_sent_p":num_sent_p,"num_sent_n":num_sent_n,"num_sent_neu":num_sent_neu,"num_sent_muyp":num_sent_muyp,"num_sent_muyn":num_sent_muyn,"total_polarida":total_polarida,"palabras_tuits":palabras_tuits,"usuario":usuario})
+    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos,"num_sent_p":num_sent_p,"num_sent_n":num_sent_n,"num_sent_neu":num_sent_neu,"num_sent_muyp":num_sent_muyp,"num_sent_muyn":num_sent_muyn,"total_polarida":total_polarida,"usuario":usuario,"lista":lista})
+    return render(request, "tagcloud.html",{"form":form, "usuario":usuario,"lista":lista})
 
 
 def tagcloud(request):
