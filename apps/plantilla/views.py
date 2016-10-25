@@ -135,10 +135,14 @@ def taller3(request):
 	    	num_sent_muyn=num_sent_muyn+1
 	    total_polarida=num_sent_muyn+num_sent_muyp+num_sent_n+num_sent_p+num_sent_neu
 	    #CONSULTAS PARA contar palabras dentro de los tuits
-            palabras_tuits= conn.db.pertemas.find({},{"text":1,"_id":0})
+            palabras_tuits= conn.db.pertemas.find({},{"text":1,"_id":0}).skip(12000)
 	    #palabras_tuits=cp["text"]
 
-	    #print palabras_tuits
+	    #CONSULTAS PARA CONOCER EL HISTORICO 
+            usuario="@" + algo	
+            #historico19= conn.db.historico.aggregate({"$match":{"fecha":"2016-10-19"}},{"group": {"_id":{ "$followers","$cuenta"}}})
+	    
+
 	    
 
     else:
@@ -153,10 +157,12 @@ def taller3(request):
 	num_sent_muyn=0
 	total_polarida=0
 	palabras_tuits=""
+	#historico19=0
+	usuario=""
 
 
 
-    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos,"num_sent_p":num_sent_p,"num_sent_n":num_sent_n,"num_sent_neu":num_sent_neu,"num_sent_muyp":num_sent_muyp,"num_sent_muyn":num_sent_muyn,"total_polarida":total_polarida,"palabras_tuits":palabras_tuits})
+    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos,"num_sent_p":num_sent_p,"num_sent_n":num_sent_n,"num_sent_neu":num_sent_neu,"num_sent_muyp":num_sent_muyp,"num_sent_muyn":num_sent_muyn,"total_polarida":total_polarida,"palabras_tuits":palabras_tuits,"usuario":usuario})
 
 
 def tagcloud(request):

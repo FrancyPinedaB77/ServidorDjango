@@ -8,7 +8,7 @@
 {% block content %}
 {% load staticfiles %}
 
-<h1>mi texto es {{palabras_tuits}} </h1>
+<h1>mi texto es {{usuario}} </h1>
 
        <!--
     <img src="/static/images/underconstruction.jpg">  -->
@@ -75,8 +75,8 @@
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data =  google.visualization.arrayToDataTable([
-           [' 2014', 'Positivo', 'Negativo', 'PocoNegativo', 'PocoPositivo', 'Neutro'],
-			['2017',100, 400, 200,500,150]
+           [' 2014', '19 Octubre', '22 Octubre', '24 Octubre', '25 Octubre', '26 Octubre', '27 Octubre', '28 Octubre', '29 Octubre'],
+			['2016',100,200, 300,400,500,600,700,800]
 
         ]);
 
@@ -133,7 +133,7 @@
 			<input type="submit" class="btn btn-success"  value="Consultar">
 		</form>
     </div> 
-    <div id="Visual2" style="width: 900px; height: 250px;"></div>
+    <div id="Visual2" style="width: 900px; height: 400px;"></div>
     </div>
 </div>
 
