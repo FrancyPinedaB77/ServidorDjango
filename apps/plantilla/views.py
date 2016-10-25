@@ -153,9 +153,7 @@ def taller3(request):
 	    #CONSULTAS PARA CONOCER EL HISTORICO 
             usuario="@" + algo	
             #historico19= conn.db.historico.aggregate({"$match":{"fecha":"2016-10-19"}},{"group": {"_id":{ "$followers","$cuenta"}}})
-	    
-
-	    
+  
 
     else:
         form = form_usuario()
@@ -173,13 +171,24 @@ def taller3(request):
 	usuario=""
 	lista=[]
 
-
-
     return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos,"num_sent_p":num_sent_p,"num_sent_n":num_sent_n,"num_sent_neu":num_sent_neu,"num_sent_muyp":num_sent_muyp,"num_sent_muyn":num_sent_muyn,"total_polarida":total_polarida,"usuario":usuario,"lista":lista})
-    return render(request, "tagcloud.html",{"form":form, "usuario":usuario,"lista":lista})
 
 
 def tagcloud(request):
+
+    print "cambios en la vista de taller 3"
+    conn = Connection()
+
+    cons_palabras =conn.db.pertemas.find({},{"text":1,"_id":0})
+    a=0
+    arrayList = []
+    for h in cons_palabras:
+        a=a+1
+       	arrayList.append(h)
+    #reg = re.compile('\S{3,}')
+    reg = re.compile('([a-zA-Z]{3,}[^0-9])')
+    lista = Counter(ma.group() for ma in reg.finditer(str(arrayList).strip('[]')))	
+
    
-    return render(request, "tagcloud.html")
+    return render(request, "tagcloud.html",{"lista":lista})
 
