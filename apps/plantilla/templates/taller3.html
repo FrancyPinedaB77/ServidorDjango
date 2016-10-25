@@ -8,12 +8,13 @@
 {% block content %}
 {% load staticfiles %}
 
-<h1>mi texto es {{amigos}} </h1>
+<h1>mi texto es {{palabras_tuits}} </h1>
 
        <!--
     <img src="/static/images/underconstruction.jpg">  -->
+
 	<script src="{% static 'js/loader.js'%}"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
 
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
