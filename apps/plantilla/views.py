@@ -122,6 +122,9 @@ def taller3(request):
 	    num_sent_neu=0
 	    num_sent_muyp=0
 	    num_sent_muyn=0
+	    historico19=0
+	    historico22=0
+
 	    for h in sentimiento_p:
 	    	num_sent_p=num_sent_p+1
 	    #CONSULTAS PARA SENTIMIENTO NEGATIVO
@@ -154,9 +157,13 @@ def taller3(request):
 	    #CONSULTAS PARA CONOCER EL HISTORICO 
             usuario="@" + algo	
 	    print usuario
-            #historico= conn.db.historico.aggregate({"$match":{"cuenta":"@piedadcordoba"}},{"$group": {"_id":{'f': "$fecha", 'f':"$followers"}}}) 
-	    #print historico
-  
+            consulta_19= conn.db.historico.find({"$and":[{"cuenta":usuario},{"fecha":"2016-10-19"}]}) 
+	    for user in consulta_19:
+		historico19= user.get("followers") 
+	    #historico 22
+            consulta_22= conn.db.historico.find({"$and":[{"cuenta":usuario},{"fecha":"2016-10-22"}]}) 
+	    for user in consulta_22:
+		historico22= user.get("followers") 
 
     else:
         form = form_usuario()
@@ -173,8 +180,10 @@ def taller3(request):
 	#historico19=0
 	usuario=""
 	lista=[]
+	historico19=0
+	historico22=0
 
-    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos,"num_sent_p":num_sent_p,"num_sent_n":num_sent_n,"num_sent_neu":num_sent_neu,"num_sent_muyp":num_sent_muyp,"num_sent_muyn":num_sent_muyn,"total_polarida":total_polarida,"usuario":usuario,"lista":lista})
+    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos,"num_sent_p":num_sent_p,"num_sent_n":num_sent_n,"num_sent_neu":num_sent_neu,"num_sent_muyp":num_sent_muyp,"num_sent_muyn":num_sent_muyn,"total_polarida":total_polarida,"usuario":usuario,"lista":lista,"historico19":historico19,"historico22":historico22})
 
 
 def tagcloud(request):
