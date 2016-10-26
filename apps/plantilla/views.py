@@ -101,7 +101,7 @@ def mygraph(request):
 #--------------------------------------------------------------------------------------------------------------------------
 #------------------------------PARTE DEL TALLER 3----------------
 def taller3(request):
-    print "cambios en la vista de taller 3"
+    print "aQUI ENTRA A VIEWS.PY "
     conn = Connection()
     
 
