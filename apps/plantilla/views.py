@@ -1,3 +1,4 @@
+from pymongo import MongoClient
 from django.shortcuts import render
 from django.http import HttpResponseRedirect,HttpResponse
 from django.http import JsonResponse
@@ -152,7 +153,9 @@ def taller3(request):
 
 	    #CONSULTAS PARA CONOCER EL HISTORICO 
             usuario="@" + algo	
-            #historico19= conn.db.historico.aggregate({"$match":{"fecha":"2016-10-19"}},{"group": {"_id":{ "$followers","$cuenta"}}})
+	    print usuario
+            #historico= conn.db.historico.aggregate({"$match":{"cuenta":"@piedadcordoba"}},{"$group": {"_id":{'f': "$fecha", 'f':"$followers"}}}) 
+	    #print historico
   
 
     else:
@@ -188,7 +191,8 @@ def tagcloud(request):
     #reg = re.compile('\S{3,}')
     reg = re.compile('([a-zA-Z]{3,}[^0-9])')
     lista = Counter(ma.group() for ma in reg.finditer(str(arrayList).strip('[]')))	
-
-   
+    #for armado in lista:
+	
+	   
     return render(request, "tagcloud.html",{"lista":lista})
 
