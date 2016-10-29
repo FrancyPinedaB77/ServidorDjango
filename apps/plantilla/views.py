@@ -164,6 +164,15 @@ def taller3(request):
             consulta_22= conn.db.historico.find({"$and":[{"cuenta":usuario},{"fecha":"2016-10-22"}]}) 
 	    for user in consulta_22:
 		historico22= user.get("followers") 
+	    #historico 24
+            consulta_24= conn.db.historico.find({"$and":[{"cuenta":usuario},{"fecha":"2016-10-24"}]}) 
+	    for user in consulta_24:
+		historico24= user.get("followers") 
+	    #historico 25
+            consulta_25= conn.db.historico.find({"$and":[{"cuenta":usuario},{"fecha":"2016-10-24"}]}) 
+	    for user in consulta_25:
+		historico25= user.get("followers") 
+
 
     else:
         form = form_usuario()
@@ -182,13 +191,22 @@ def taller3(request):
 	lista=[]
 	historico19=0
 	historico22=0
+	historico24=0
+	historico25=0
+	historico26=0
+	historico27=0
+	historico28=0
+	historico29=0
 
-    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos,"num_sent_p":num_sent_p,"num_sent_n":num_sent_n,"num_sent_neu":num_sent_neu,"num_sent_muyp":num_sent_muyp,"num_sent_muyn":num_sent_muyn,"total_polarida":total_polarida,"usuario":usuario,"lista":lista,"historico19":historico19,"historico22":historico22})
+    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos,"num_sent_p":num_sent_p,"num_sent_n":num_sent_n,"num_sent_neu":num_sent_neu,"num_sent_muyp":num_sent_muyp,"num_sent_muyn":num_sent_muyn,"total_polarida":total_polarida,"usuario":usuario,"lista":lista,"historico19":historico19,"historico22":historico22,"historico24":historico24,"historico25":historico25})
 
 
 def tagcloud(request):
+	#Secuencia para hacer el tag cloud de palabras 
     array_para_tagcloud=[]
     b=[]
+    h=[]
+    array_para_hash=[]
     conn = Connection()
 
     cons_palabras =conn.db.pertemas.find({},{"text":1,"_id":0})
@@ -198,14 +216,19 @@ def tagcloud(request):
         a=a+1
        	arrayList.append(h)
     reg = re.compile('([a-zA-Z]{3,}[^0-9])')
+    exprehash= re.compile("(\x23[a-zA-z]{3,})")
     lista = Counter(ma.group() for ma in reg.finditer(str(arrayList).strip('[]')))
+    listahash = Counter(ma.group() for ma in exprehash.finditer(str(arrayList).strip('[]')))
     campo1="text"
     campo2="weight"
-    for p in  lista.most_common():
-	#array_para_tagcloud=[{campo1:p[0],campo2:p[1]}]
+    for p in  lista.most_common(400):
 	b.extend([{campo1:p[0],campo2:p[1]}])	
+    for h in  listahash.most_common(200):#trae los has
+	array_para_hash.extend([{campo1:h[0],campo2:h[1]}])	
+
 	
-    # en la letra b llega el array para poder graficar el tag en el formato 	
+	# en la letra b llega el array para poder graficar el tag en el formato 	
+    # haciendo el tagcloud de hastag
 	   
-    return render(request, "tagcloud.html",{"obj":json.dumps(b)})
+    return render(request, "tagcloud.html",{"obj":json.dumps(b),"array_para_hash":array_para_hash})
 

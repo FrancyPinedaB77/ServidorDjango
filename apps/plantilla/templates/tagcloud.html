@@ -31,10 +31,16 @@
 
 <script type="text/javascript">
 var a ={{obj| safe}};
+var b ={{array_para_hash| safe}};
 
       $(function() {
         // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
         $("#example").jQCloud(a);
+      });
+
+	      $(function() {
+        // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
+        $("#otrotag").jQCloud(b);
       });
 
  </script>
@@ -42,8 +48,10 @@ var a ={{obj| safe}};
 <script>
 
 </script>
-  <div id="example" style="width: 1000px; height: 500px;"></div> 
-
+  <h1> PALABRAS MAS USADAS EN LOS TUITS</h1>
+  <div id="example" style="width: 1000px; height: 600px;"></div> 
+  <h1> Hastag mas usados</h1>
+  <div id="otrotag" style="width: 1000px; height: 600px;"></div> 
 </div>
 
 
