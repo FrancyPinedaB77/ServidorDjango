@@ -196,15 +196,14 @@ def tagcloud(request):
     arrayList = []
     for h in cons_palabras:
         a=a+1
-	#h.get("text")
        	arrayList.append(h)
     #reg = re.compile('\S{3,}')
     reg = re.compile('([a-zA-Z]{3,}[^0-9])')
     lista = Counter(ma.group() for ma in reg.finditer(str(arrayList).strip('[]')))
-    for p in  lista.most_common(10):
-	print p[1]
-    
 	
+    
+
+
 #for armado in lista:
 	
 	   
