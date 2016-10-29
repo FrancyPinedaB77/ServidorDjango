@@ -9,69 +9,35 @@
 {% block content %}
 {% load staticfiles %}
 	
-<h1>AQUI DEBE QUEDAR EL TAGCLOUD </h1>
- <h1>mi texto es {{lista}} </h1>  
+<meta charset="UTF-8">
+<!-- <h1>mi texto es {{lista}} </h1>  -->
+
 
  	   <div class="form-group",class="btn btn-success">
 		<form method="post" >
 		    {% csrf_token %}
 		    {{ form}}
-		    <input type="submit" class="btn btn-success"  value="Consultar">
+		    
 		</form>		
 	   </div>  
 
 
 <div id="tagcloud" style="width: 600px; height: 350px;">
 
-	<script src="{% static 'js/d3.min.js'%}"></script>
-	<script src="{% static 'js/jquery.min.js'%}"></script>
+
+	<script src="{% static 'js/jquery.min.js'%}" ></script>
 	<script src="{% static 'js/jqcloud-1.0.4.js'%}"></script>
 	<link rel="stylesheet" href="{% static 'css/jqcloud.css'%}">
 
-
 <script type="text/javascript">
-
-
-var word_array = [
-          {text: "Lorem", weight: 15000},
-          {text: "Ipsum", weight: 10000},
-          {text: "Dolodddr", weight: 12000},
-          {text: "Sit", weight: 8000},
-         {text: "Dolorddddsxsxs", weight: 800},
-          {text: "Sit", weight: 3800},
-         {text: "Dolor", weight: 7000},
-          {text: "Sit", weight: 12000},
-         {text: "Dolor", weight: 1500},
-          {text: "Sit", weight: 1800},
-          {text: "Lorem", weight: 15000},
-          {text: "Ipsum", weight: 10000},
-          {text: "Dolodxsxsr", weight: 2000},
-          {text: "Sit", weight: 8000},
-         {text: "Dolor", weight: 8000},
-          {text: "Sit", weight: 3800},
-         {text: "Dolor", weight: 7000},
-          {text: "Sit", weight: 12000},
-         {text: "Dolor", weight: 1500},
-          {text: "Sit", weight: 1800},
-          {text: "Lorem", weight: 1500},
-          {text: "Ipsum", weight: 1000, link: "http://jquery.com/"},
-          {text: "Dolor", weight: 2000},
-          {text: "Sit", weight: 8000},
-         {text: "Dolor", weight: 80},
-          {text: "Sit", weight: 38},
-         {text: "Dolor", weight: 70},
-          {text: "Sit", weight: 12},
-         {text: "Dolor", weight: 15},
-          {text: "Sit", weight: 18},
-          {text: "Amet", weight: 20}
-          // ...as many words as you want
-      ];
+var a ={{obj| safe}};
 
       $(function() {
         // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
-        $("#example").jQCloud(word_array);
+        $("#example").jQCloud(a);
       });
-    </script>
+
+ </script>
 
 <script>
 

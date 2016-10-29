@@ -187,8 +187,8 @@ def taller3(request):
 
 
 def tagcloud(request):
-
-    print "cambios en la vista de taller 3"
+    array_para_tagcloud=[]
+    b=[]
     conn = Connection()
 
     cons_palabras =conn.db.pertemas.find({},{"text":1,"_id":0})
@@ -196,17 +196,16 @@ def tagcloud(request):
     arrayList = []
     for h in cons_palabras:
         a=a+1
-	#h.get("text")
        	arrayList.append(h)
-    #reg = re.compile('\S{3,}')
     reg = re.compile('([a-zA-Z]{3,}[^0-9])')
     lista = Counter(ma.group() for ma in reg.finditer(str(arrayList).strip('[]')))
-    for p in  lista.most_common(10):
-	print p[1]
-    
+    campo1="text"
+    campo2="weight"
+    for p in  lista.most_common():
+	#array_para_tagcloud=[{campo1:p[0],campo2:p[1]}]
+	b.extend([{campo1:p[0],campo2:p[1]}])	
 	
-#for armado in lista:
-	
+    # en la letra b llega el array para poder graficar el tag en el formato 	
 	   
-    return render(request, "tagcloud.html",{"lista":lista})
+    return render(request, "tagcloud.html",{"obj":json.dumps(b)})
 
