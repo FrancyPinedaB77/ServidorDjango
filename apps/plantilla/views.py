@@ -238,9 +238,9 @@ def tagcloud(request):
     campo2="weight"
     quitar=["https"]
     for p in  lista.most_common(100):
-        print p[0]      
-	if p[0]not in ('que ', 'xeda ','https:','text\'','por ','las ','los ',"del ",'para ','una ','sobr e','como ','xed ','con ','para ','por '):
-	    print p[0]+":"
+        #print p[0]      
+	if p[0]not in ('que ', 'xeda ','https:','text\'','por ','las ','los ',"del ",'para ','una ','sobr e','como ','xed ','con ','para ','por ','dos '):
+	   # print p[0]+":"
 	    b.extend([{campo1:p[0],campo2:p[1]}])	
 
     for h in  listahash.most_common(200):#trae los has
@@ -251,5 +251,35 @@ def tagcloud(request):
     # haciendo el tagcloud de hastag
 	   
     return render(request, "tagcloud.html",{"obj":json.dumps(b),"array_para_hash":array_para_hash})
+
+
+def punto3(request):
+	
+    conn = Connection()
+    cons_palabras =conn.db.pertemas.find({},{"text":1,"_id":0})
+    numero=85
+    numero_negative=0
+    numero_positive=0
+    numero_n=0
+    numero_p=0
+    debate_negative = conn.db.debatesentiment.find({"sentiment_score_annoted":"Negative"})
+    debate_positive = conn.db.debatesentiment.find({"sentiment_score_annoted":"Positive"})
+    deb_p= conn.db.debatesentiment.find({"sentimiento":"P"})
+    deb_n=conn.db.debatesentiment.find({"sentimiento":"N"})
+    for n in debate_negative:
+        numero_negative = numero_negative+1
+    for p in debate_positive:
+        numero_positive = numero_positive+1
+
+    for nn in deb_n:
+        numero_n= numero_n+1
+    for pp in deb_p:
+        numero_p = numero_p+1
+    total=numero_positive +numero_negative 
+
+    total1=numero_p +numero_n
+
+    return render(request, "punto3.html",{"numero":numero,"numero_negative":numero_negative,"numero_positive":numero_positive, "total":total, "total1":total1, "numero_n":numero_n, "numero_p":numero_p})
+
 
 

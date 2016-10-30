@@ -1,0 +1,96 @@
+
+{% extends 'menu.html' %}
+
+{% block title %}
+    <title>taller3</title>
+{% endblock%}
+
+{% block content %}
+{% load staticfiles %}
+
+	<script src="{% static 'js/loader.js'%}"></script>
+	
+
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Negative',{{numero_negative}}],
+          ['Positive',{{numero_positive}}],
+          ['NEUTRO',  20],
+          ['P', 50],
+          ['P+',    30]
+        ]
+
+		);
+
+        var options = {
+          title: 'Sentimientos de los tweets de la base debate: {{total}}',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('tortadebate'));
+
+        chart.draw(data, options);
+      }
+    </script>    
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Negative',10],
+          ['N',      10],
+          ['NEUTRO',  20],
+          ['P', 50],
+          ['P+',    30]
+        ]
+
+		);
+
+        var options = {
+          title: 'Sentimientos de los tweets debates calculado  {{total}}',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('tortadebate1'));
+
+        chart.draw(data, options);
+      }
+    </script>   
+
+
+<!--***************************************AQUI ESTA LA SEGUNDA FILA DE LA VISUALIZACION*****************************-->
+<div class="row">
+
+
+    <div class="col-md-6">
+		<br>
+		<label >Porcentaje de Tweets "debate" </label>
+    
+    <div id="tortadebate" style="width: 800px; height: 350px;"></div>
+	</div>
+
+
+
+    <div class="col-md-6">
+		<br>
+		<label >Porcentaje de Tweets "debate"</label>
+    
+    <div id="tortadebate1" style="width: 800px; height: 350px;"></div>
+	</div> 
+
+    </div> 
+    <div id="Visual2" style="width: 900px; height: 400px;"></div>
+    </div>
+</div>
+
+   
+    </div>
+
+{% endblock%}
