@@ -169,7 +169,7 @@ def taller3(request):
 	    for user in consulta_24:
 		historico24= user.get("followers") 
 	    #historico 25
-            consulta_25= conn.db.historico.find({"$and":[{"cuenta":usuario},{"fecha":"2016-10-24"}]}) 
+            consulta_25= conn.db.historico.find({"$and":[{"cuenta":usuario},{"fecha":"2016-10-25"}]}) 
 	    for user in consulta_25:
 		historico25= user.get("followers") 
 
@@ -198,7 +198,7 @@ def taller3(request):
 	historico28=0
 	historico29=0
 
-    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos,"num_sent_p":num_sent_p,"num_sent_n":num_sent_n,"num_sent_neu":num_sent_neu,"num_sent_muyp":num_sent_muyp,"num_sent_muyn":num_sent_muyn,"total_polarida":total_polarida,"usuario":usuario,"lista":lista,"historico19":historico19,"historico22":historico22,"historico24":historico24,"historico25":historico25})
+    return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos,"num_sent_p":num_sent_p,"num_sent_n":num_sent_n,"num_sent_neu":num_sent_neu,"num_sent_muyp":num_sent_muyp,"num_sent_muyn":num_sent_muyn,"total_polarida":total_polarida,"usuario":usuario,"lista":lista,"historico19":historico19,"historico22":historico22,"historico22":historico22,"historico22":historico22})
 
 
 def tagcloud(request):
