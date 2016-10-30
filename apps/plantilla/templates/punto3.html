@@ -29,35 +29,13 @@
           is3D: true,
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('tortadebate'));
+        var chart = new google.visualization.PieChart(document.getElementById('torta1'));
 
         chart.draw(data, options);
       }
     </script>    
 
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Positivo',      {{numero_p}}],
-          ['Negativo',{{numero_n}}],
-          ['Otro',    30]
-        ]
 
-		);
-
-        var options = {
-          title: 'Sentimientos de los tweets debates calculado  {{total1}}',
-          is3D: true,
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('tortadebate1'));
-
-        chart.draw(data, options);
-      }
-    </script> 
 <!--***************************************AQUI ESTA LA SEGUNDA FILA PARA EL SEGUNDO DATASET*****************************-->
 
 
@@ -85,19 +63,15 @@
         chart.draw(data, options);
       }
     </script>    
-
-
  <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Positive',{{numero_positive}}],
-          ['Negative',{{numero_negative}}],
-          ['Other',{{numero_other}}],
-          ['Mixed',{{numero_mixed}}]
-        ]
+          ['Positive',1],
+          ['Negative',2]
+         ]
 
 		);
 
@@ -112,6 +86,32 @@
       }
     </script>    
 
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Positivo',      {{numero_p}}],
+          ['Negativo',{{numero_n}}],
+          ['Otro',    30]
+        ]
+
+		);
+
+        var options = {
+          title: 'Sentimientos de los tweets debates calculado  {{total1}}',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('torta2'));
+
+        chart.draw(data, options);
+      }
+    </script> 
+
+
+
 
 
   
@@ -124,7 +124,7 @@
 		<br>
 		<label >Porcentaje de Tweets "debate" </label>
     
-    <div id="tortadebate" style="width: 1200px; height: 650px;"></div>
+    <div id="torta1" style="width: 1200px; height: 650px;"></div>
 	</div>
 
 
@@ -133,7 +133,7 @@
 		<br>
 		<label >Porcentaje de Tweets "debate"</label>
     
-    <div id="tortadebate1" style="width:1200px; height: 650px;"></div>
+    <div id="torta2" style="width:1200px; height: 650px;"></div>
 	</div> 
 
     </div> 
