@@ -260,10 +260,16 @@ def punto3(request):
     numero=85
     numero_negative=0
     numero_positive=0
+    numero_other=0
+    numero_mixed=0
+
     numero_n=0
     numero_p=0
     debate_negative = conn.db.debatesentiment.find({"sentiment_score_annoted":"Negative"})
     debate_positive = conn.db.debatesentiment.find({"sentiment_score_annoted":"Positive"})
+    debate_other = conn.db.debatesentiment.find({"sentiment_score_annoted":"Other"})
+    debate_mixed = conn.db.debatesentiment.find({"sentiment_score_annoted":"Mixed"})
+
     deb_p= conn.db.debatesentiment.find({"sentimiento":"P"})
     deb_n=conn.db.debatesentiment.find({"sentimiento":"N"})
     for n in debate_negative:
@@ -271,15 +277,35 @@ def punto3(request):
     for p in debate_positive:
         numero_positive = numero_positive+1
 
+    for p in debate_other:
+        numero_other = numero_other+1
+    for p in debate_mixed:
+        numero_mixed = numero_mixed+1
+
     for nn in deb_n:
         numero_n= numero_n+1
     for pp in deb_p:
         numero_p = numero_p+1
-    total=numero_positive +numero_negative 
-
+    total=numero_positive +numero_negative +numero_other+numero_mixed
     total1=numero_p +numero_n
 
-    return render(request, "punto3.html",{"numero":numero,"numero_negative":numero_negative,"numero_positive":numero_positive, "total":total, "total1":total1, "numero_n":numero_n, "numero_p":numero_p})
+    #para el otro dataset
+    num_n=0
+    num_p=0
+    num_neutral=0
+    sent_p= conn.db.sentiment.find({"sentiment":"Positive"})
+    sent_n=conn.db.sentiment.find({"sentiment":"Negative"})
+    sent_neutral=conn.db.sentiment.find({"sentiment":"Neutral"})
+
+    for sn in sent_n:
+        num_n = num_n+1
+    for sp in sent_p:
+        num_p = num_p+1
+    for neutral in sent_neutral:
+        num_neutral = num_neutral+1	
+    total3=num_n+num_p +num_neutral
+
+    return render(request, "punto3.html",{"numero":numero,"numero_negative":numero_negative,"numero_positive":numero_positive, "total":total, "total1":total1, "numero_n":numero_n, "numero_p":numero_p,"numero_other":numero_other,"numero_mixed":numero_mixed,"num_neutral":num_neutral,"num_n":num_n, "num_p":num_p,"total3":total3})
 
 
 

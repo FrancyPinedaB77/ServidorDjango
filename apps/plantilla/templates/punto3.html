@@ -10,19 +10,16 @@
 
 	<script src="{% static 'js/loader.js'%}"></script>
 	
-
-
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Negative',{{numero_negative}}],
           ['Positive',{{numero_positive}}],
-          ['NEUTRO',  20],
-          ['P', 50],
-          ['P+',    30]
+          ['Negative',{{numero_negative}}],
+          ['Other',{{numero_other}}],
+          ['Mixed',{{numero_mixed}}]
         ]
 
 		);
@@ -44,17 +41,15 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Negative',10],
-          ['N',      10],
-          ['NEUTRO',  20],
-          ['P', 50],
-          ['P+',    30]
+          ['Positivo',      {{numero_p}}],
+          ['Negativo',{{numero_n}}],
+          ['Otro',    30]
         ]
 
 		);
 
         var options = {
-          title: 'Sentimientos de los tweets debates calculado  {{total}}',
+          title: 'Sentimientos de los tweets debates calculado  {{total1}}',
           is3D: true,
         };
 
@@ -62,18 +57,74 @@
 
         chart.draw(data, options);
       }
-    </script>   
+    </script> 
+<!--***************************************AQUI ESTA LA SEGUNDA FILA PARA EL SEGUNDO DATASET*****************************-->
+
+
+ <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Positive',{{num_p}}],
+          ['Negative',{{num_n}}],
+          ['Neutral',{{num_neutral}}]
+          
+        ]
+
+		);
+
+        var options = {
+          title: 'Sentimientos de los tweets de la base debate: {{total3}}',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('torta3'));
+
+        chart.draw(data, options);
+      }
+    </script>    
+
+
+ <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Positive',{{numero_positive}}],
+          ['Negative',{{numero_negative}}],
+          ['Other',{{numero_other}}],
+          ['Mixed',{{numero_mixed}}]
+        ]
+
+		);
+
+        var options = {
+          title: 'Sentimientos de los tweets de la base debate: {{total}}',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('torta4'));
+
+        chart.draw(data, options);
+      }
+    </script>    
+
+
+
+  
 
 
 <!--***************************************AQUI ESTA LA SEGUNDA FILA DE LA VISUALIZACION*****************************-->
 <div class="row">
 
-
     <div class="col-md-6">
 		<br>
 		<label >Porcentaje de Tweets "debate" </label>
     
-    <div id="tortadebate" style="width: 800px; height: 350px;"></div>
+    <div id="tortadebate" style="width: 1200px; height: 650px;"></div>
 	</div>
 
 
@@ -82,11 +133,35 @@
 		<br>
 		<label >Porcentaje de Tweets "debate"</label>
     
-    <div id="tortadebate1" style="width: 800px; height: 350px;"></div>
+    <div id="tortadebate1" style="width:1200px; height: 650px;"></div>
 	</div> 
 
     </div> 
-    <div id="Visual2" style="width: 900px; height: 400px;"></div>
+    
+    </div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-6">
+		<br>
+		<label >Porcentaje de Tweets "Sentiment" </label>
+    
+    <div id="torta3" style="width: 1200px; height: 650px;"></div>
+	</div>
+
+
+
+    <div class="col-md-6">
+		<br>
+		<label >Porcentaje de Tweets calculado "Sentiment"</label>
+    
+    <div id="torta4" style="width: 1200px; height: 650px;"></div>
+	</div> 
+
+    </div> 
+
     </div>
 </div>
 
