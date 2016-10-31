@@ -2,6 +2,9 @@ from pymongo import MongoClient
 from django.shortcuts import render
 from django.http import HttpResponseRedirect,HttpResponse
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+
 
 import os
 import sys
@@ -22,10 +25,11 @@ archivo_cluster=os.system ("scp cluster_bigdata:lasalida/* /home/estudiante/Graf
 print archivo_cluster
 ##TERMINANDO EL SUBPROCESO
 
+@csrf_exempt
 #def archive (request)
 def inicio(request):
     return render(request, 'inicio.html')
-
+@csrf_exempt
 def findNodeId(nodeLabel,graph):
     #graph = {"nodes": [], "edges": []}
     nodes = graph["nodes"]
@@ -100,6 +104,8 @@ def mygraph(request):
 #--------------------------------------------------------------------------------------------------------------------------
 #--------------------------------------------------------------------------------------------------------------------------
 #------------------------------PARTE DEL TALLER 3----------------
+
+@csrf_exempt
 def taller3(request):
     print "aQUI ENTRA A VIEWS.PY "
     conn = Connection()
@@ -215,7 +221,7 @@ def taller3(request):
 
     return render(request, "taller3.html",{"form":form, "numero_seguidores":numero_seguidores,"nombre_usuario":nombre_usuario,"amigos":amigos,"num_sent_p":num_sent_p,"num_sent_n":num_sent_n,"num_sent_neu":num_sent_neu,"num_sent_muyp":num_sent_muyp,"num_sent_muyn":num_sent_muyn,"total_polarida":total_polarida,"usuario":usuario,"lista":lista,"historico19":historico19,"historico22":historico22,"historico24":historico24,"historico25":historico25,"historico26":historico26,"historico27":historico27,"historico28":historico28,"historico29":historico29})
 
-
+@csrf_exempt
 def tagcloud(request):
 	#Secuencia para hacer el tag cloud de palabras 
     array_para_tagcloud=[]
@@ -252,7 +258,7 @@ def tagcloud(request):
 	   
     return render(request, "tagcloud.html",{"obj":json.dumps(b),"array_para_hash":array_para_hash})
 
-
+@csrf_exempt
 def punto3(request):
 	
     conn = Connection()
