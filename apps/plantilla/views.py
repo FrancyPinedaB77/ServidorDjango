@@ -243,13 +243,13 @@ def tagcloud(request):
     campo1="text"
     campo2="weight"
     quitar=["https"]
-    for p in  lista.most_common(100):
+    for p in  lista.most_common(300):
         #print p[0]      
-	if p[0]not in ('que ', 'xeda ','https:','text\'','por ','las ','los ',"del ",'para ','una ','sobr e','como ','xed ','con ','para ','por ','dos '):
+	if p[0]not in ('que ', 'xeda ','https:','text\'','por ','las ','los ',"del ",'para ','una ','sobr e','como ','xed ','con ','para ','por ','dos ','http: ','xeds ','Los ','son ','fue','nhttps:','pero ','Bogot\ ',' ser\ ','sus ','han ','fue ','dice ','todo ','sigue ','puede ','les ','sobre ',"est\ ","contra ","xedn ","ser ","deber\ ","Ord\ ","ana ","htt\ " ):
 	   # print p[0]+":"
 	    b.extend([{campo1:p[0],campo2:p[1]}])	
 
-    for h in  listahash.most_common(200):#trae los has
+    for h in  listahash.most_common(300):#trae los has
 	array_para_hash.extend([{campo1:h[0],campo2:h[1]}])	
 
 	
