@@ -245,7 +245,7 @@ def tagcloud(request):
     quitar=["https"]
     for p in  lista.most_common(300):
         #print p[0]      
-	if p[0]not in ('que ', 'xeda ','https:','text\'','por ','las ','los ',"del ",'para ','una ','sobr e','como ','xed ','con ','para ','por ','dos ','http: ','xeds ','Los ','son ','fue','nhttps:','pero ','Bogot\ ',' ser\ ','sus ','han ','fue ','dice ','todo ','sigue ','puede ','les ','sobre ',"est\ ","contra ","xedn ","ser ","deber\ ","Ord\ ","ana ","htt\ " ):
+	if p[0]not in ('que ', 'xeda ','https:','text\'','por ','las ','los ',"del ",'para ','una ','sobr e','como ','xed ','con ','para ','por ','dos ','http: ','xeds ','Los ','son ','fue','nhttps:','pero ','Bogot\ ',' ser\ ','sus ','han ','fue ','dice ','todo ','sigue ','puede ','les ','sobre ',"est\ ","contra ","xedn ","ser ","deber\ ","Ord\ ","ana ","http: " ):
 	   # print p[0]+":"
 	    b.extend([{campo1:p[0],campo2:p[1]}])	
 
