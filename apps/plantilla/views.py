@@ -271,13 +271,13 @@ def punto3(request):
 
     numero_n=0
     numero_p=0
-    debate_negative = conn.db.debatesentiment.find({"sentiment_score_annoted":"Negative"})
-    debate_positive = conn.db.debatesentiment.find({"sentiment_score_annoted":"Positive"})
-    debate_other = conn.db.debatesentiment.find({"sentiment_score_annoted":"Other"})
-    debate_mixed = conn.db.debatesentiment.find({"sentiment_score_annoted":"Mixed"})
+    debate_negative = conn.db.debate_sent_consulta.find({"sentiment_score_annoted":"Negative"})
+    debate_positive = conn.db.debate_sent_consulta.find({"sentiment_score_annoted":"Positive"})
+    debate_other = conn.db.debate_sent_consulta.find({"sentiment_score_annoted":"Other"})
+    debate_mixed = conn.db.debate_sent_consulta.find({"sentiment_score_annoted":"Mixed"})
 
-    deb_p= conn.db.debatesentiment.find({"sentimiento":"P"})
-    deb_n=conn.db.debatesentiment.find({"sentimiento":"N"})
+    deb_p= conn.db.debate_sent_consulta.find({"sentimiento":"P"})
+    deb_n=conn.db.debate_sent_consulta.find({"sentimiento":"N"})
     for n in debate_negative:
         numero_negative = numero_negative+1
     for p in debate_positive:
@@ -292,6 +292,8 @@ def punto3(request):
         numero_n= numero_n+1
     for pp in deb_p:
         numero_p = numero_p+1
+
+
     total=numero_positive +numero_negative +numero_other+numero_mixed
     total1=numero_p +numero_n
 
