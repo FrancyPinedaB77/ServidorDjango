@@ -315,5 +315,9 @@ def punto3(request):
 
     return render(request, "punto3.html",{"numero":numero,"numero_negative":numero_negative,"numero_positive":numero_positive, "total":total, "total1":total1, "numero_n":numero_n, "numero_p":numero_p,"numero_other":numero_other,"numero_mixed":numero_mixed,"num_neutral":num_neutral,"num_n":num_n, "num_p":num_p,"total3":total3})
 
+def taller4(request):
+    print "Entra al ataller 4 "
+    numero=77
+    return render(request, "taller4.html",{numero,"numero"})
 
 
