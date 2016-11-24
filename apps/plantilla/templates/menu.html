@@ -16,7 +16,9 @@
  		<link href="/static/css/vis.css" rel="stylesheet" type="text/css" />
 		<!-- estaticos del grafo -->
 		<script src="{% static 'js/jquery.min.js'%}"></script>
-
+		<!--Funcionalidaddes para leaflef -->
+		<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
 		
 		<div id="home" class="header">
 					<div class="top-header">
@@ -44,11 +46,14 @@
 						</div>
 					</div>
 			</div>
-			<div>
+
+</head>
+
+			<div >
 			{% block content %}
 			{% endblock%}
 			</div>
-</head>
+
 </html>					
      
 		

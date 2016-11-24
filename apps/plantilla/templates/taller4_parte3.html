@@ -8,10 +8,49 @@
 {% block content %}
 <h1>mi texto es {{numero3}} </h1>
 
-    <img src="/static/images/underconstruction.jpg">  
-   
+<style type="text/css">
+  #mapid { 
+  		height: 1200px; 
+		}
+</style> 
+
+<div id="mapid">
+
+<script type="text/javascript">
+var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'francy777.270ba7kb', //https://www.mapbox.com/studio/classic/projects/
+    accessToken: 'pk.eyJ1IjoiZnJhbmN5Nzc3IiwiYSI6ImNpdndzY294eDAwdW0yenBieDN1dDRrcWgifQ.XY7FywK8FL23oiRD2vX8Bw'
+}).addTo(mymap);
+
+var marker = L.marker([4.598889, -74.080833]).addTo(mymap);
+//se adiciona el circulo enel mapa
+var circle = L.circle([51.508, -0.11], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 500
+}).addTo(mymap);
+
+//se adiciona el poigono enel mapa
+var polygon = L.polygon([
+    [51.509, -0.08],
+    [51.503, -0.06],
+    [51.51, -0.047]
+]).addTo(mymap);
+//colocnado a cada punto informacion popup
+marker.bindPopup("<b>PUunto de localizacion</b><br>Esto es un popup.").openPopup();
+circle.bindPopup("I am a circle.");
+polygon.bindPopup("I am a polygon.");
 
 
-    </div>
+var popup = L.popup()
+    .setLatLng([4.598889, -74.080833])
+    .setContent("PROYECTO BIGDATA2016")
+    .openOn(mymap);
 
+</script>
+</div>
 {% endblock%}
