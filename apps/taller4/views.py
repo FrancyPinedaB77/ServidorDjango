@@ -23,19 +23,20 @@ def taller4_parte3(request):
     sparql.setQuery("""
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     SELECT ?lat
-    WHERE { <http://dbpedia.org/resource/Spain> geo:lat ?lat }
+    WHERE { <http://dbpedia.org/resource/Colombia> geo:lat ?lat }
 """)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
     for result in results["results"]["bindings"]:
         a=2
         #print (result["lat"]["value"]).decode(string)
-    lat=(result["lat"]["value"])    
+    lat=(result["lat"]["value"]) 
+    print lat   
     #Trae los valores de longitud 
     sparql.setQuery("""
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         SELECT ?long
-        WHERE { <http://dbpedia.org/resource/Spain> geo:long ?long }
+        WHERE { <http://dbpedia.org/resource/Colombia> geo:long ?long }
     """)
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
@@ -43,6 +44,8 @@ def taller4_parte3(request):
         a=2
         #print (result["long"]["value"])
     longit=(result["long"]["value"]) 
+    print longit
+
     return render(request, "taller4_parte3.html",{"longit":longit,"lat":lat})
 
 
