@@ -24,9 +24,9 @@
             }).addTo(map);
 
 
-        for (var i = 0; i < planes.length; i++) {
-            marker = new L.marker([planes[i][1],planes[i][2]])
-                .bindPopup(planes[i][0])
+        for (var i = 0; i < localizaciones.length; i++) {
+            marker = new L.marker([localizaciones[i][1],localizaciones[i][2]])
+                .bindPopup(localizaciones[i][0])
                 .addTo(map);
         }
               
