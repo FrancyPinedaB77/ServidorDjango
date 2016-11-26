@@ -6,12 +6,52 @@
 {% endblock%}
 
 {% block content %}
-<h1>mi texto es {{classified_text}} </h1>
-<h1>mi texto es {{t}} </h1>
-<h1>mi texto es {{b}} </h1>
 
-    <img src="/static/images/underconstruction.jpg">  
-   
+
+<table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Pregunta</th>
+                <th>Puntaje</th>
+                <th>Titulo</th>
+            </tr>
+            </thead>
+            <tbody> 
+
+{% for icon in consulta1 %}
+<tr>
+<td>{{ icon.items.0.title }}</td>
+<td>{{icon.items.0.score}}</td>
+<td>{{ icon.items.0.body}}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+<h1>-----------Siguiente Pregunta-----------------</h1>
+
+<div class="col-md-12 portfolio-item">
+            <hr>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if infoPage.page > 1 %}
+                        <a href="?page={{ infoPage.previous_page_number }}">anterior</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Pág. {{ infoPage.page }} de {{ infoPage.num_pages }}.
+                    </span>
+
+                    {% if infoPage.page < infoPage.num_pages %}
+                        <a href="?page={{ infoPage.next_page_number }}">siguiente</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+
+
+
+
 
 
     </div>
