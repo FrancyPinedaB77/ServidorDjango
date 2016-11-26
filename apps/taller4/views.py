@@ -20,14 +20,15 @@ def taller4_parte1(request): #ESTA VISTA ME MUETRA LAS PREGUNTAS CON SU INFORMAC
     cliente = MongoClient('127.0.0.1', 27017)#Indicar parametros del servidor
     bd = cliente.taller4 #Seleccionar Schema
     coleccion = bd.body_pregunta  #Seleccionar Coleccion  
+    coleccion2=bd.body_respuestas
     count=coleccion.count()
-    
-    numero_preguntas_pagina=5 
-    numero_pagina_inicial=1
-    consulta1= coleccion.find().skip(numero_pagina_inicial).limit(numero_preguntas_pagina)
+    numero_preguntas_pagina=1
+    consulta1= coleccion.find().skip(numero_preguntas_pagina * (PAGE-1)).limit(numero_preguntas_pagina)
+    consulta2= coleccion2.find().skip(numero_preguntas_pagina * (PAGE-1)).limit(numero_preguntas_pagina)
+        
 
     infoPage={'countPage': count, 'num_pages': count/numero_preguntas_pagina + 1, 'page':PAGE,'previous_page_number':PAGE-1, 'next_page_number':PAGE+1}
-    return render(request, "taller4_parte1.html",{"consulta1":consulta1, "infoPage":infoPage})
+    return render(request, "taller4_parte1.html",{"consulta1":consulta1,"consulta2":consulta2, "infoPage":infoPage})
 
 def taller4_parte2(request):
     numero2=78
