@@ -21,15 +21,15 @@
 
 {% for icon in consulta1 %}
 <tr>
-<td>{{ icon.items.0.title }}</td>
-<td>{{icon.items.0.score}}</td>
-<td>{{icon.items.0.tags}}</td>
-<td>{{ icon.items.0.body}}</td>
+<td>{{ icon.items.0.title|safe}}</td>
+<td>{{icon.items.0.score|safe}}</td>
+<td>{{icon.items.0.tags|safe}}</td>
+<td>{{ icon.items.0.body|safe}}</td>
 </tr>
 {% endfor %}
 </tbody>
 </table>
-<!--Tabla par avisualizar Respuestas  -->
+
 <table class="table table-striped">
             <thead>
             <tr>
@@ -40,21 +40,16 @@
             </thead>
             <tbody> 
 
-{% for icon2 in consulta2 %}
+{% for icon2 in datta %}
 <tr>
-<td>{{ icon2.items.0.title }}</td>
-<td>{{icon2.items.0.score}}</td>
-<td>{{ icon2.items.0.body}}</td>
+<td>{{ icon2.items.0.title|safe}}</td>
+<td>{{ icon2.items.0.score|safe}}</td>
+<td>{{ icon2.items.0.body|safe}}</td>
 </tr>
 {% endfor %}
 </tbody>
 </table>
 
-
-
-
-
-<h1>-----------Siguiente Pregunta-----------------</h1>
 <div class="col-md-12 portfolio-item">
             <hr>
             <div class="pagination">

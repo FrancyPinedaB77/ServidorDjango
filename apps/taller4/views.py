@@ -7,8 +7,9 @@ import SPARQLWrapper
 from SPARQLWrapper import SPARQLWrapper, JSON
 from django.core.paginator import Paginator
 from pymongo import MongoClient
+import json
 
-
+from bson.json_util import dumps
 # Create your views here.
 def taller4_parte1(request): #ESTA VISTA ME MUETRA LAS PREGUNTAS CON SU INFORMACION 
     if request.GET.get('page') != None:
@@ -22,13 +23,25 @@ def taller4_parte1(request): #ESTA VISTA ME MUETRA LAS PREGUNTAS CON SU INFORMAC
     coleccion = bd.body_pregunta  #Seleccionar Coleccion  
     coleccion2=bd.body_respuestas
     count=coleccion.count()
-    numero_preguntas_pagina=1
+    numero_preguntas_pagina=2
     consulta1= coleccion.find().skip(numero_preguntas_pagina * (PAGE-1)).limit(numero_preguntas_pagina)
+    pregunta_for_front=coleccion.find().skip(numero_preguntas_pagina * (PAGE-1)).limit(numero_preguntas_pagina)
     consulta2= coleccion2.find().skip(numero_preguntas_pagina * (PAGE-1)).limit(numero_preguntas_pagina)
-        
+
+    #jsondata = {}
+    n=1
+    salida={}
+    datos=[]
+    for los_id_pregunta in pregunta_for_front:
+        id_pregunta=int(los_id_pregunta.get("items")[0]["question_id"])  
+        datos.append(id_pregunta)
+    print datos
+
+
+    datta=  coleccion2.find({"items.0.question_id": { '$in': datos} })
 
     infoPage={'countPage': count, 'num_pages': count/numero_preguntas_pagina + 1, 'page':PAGE,'previous_page_number':PAGE-1, 'next_page_number':PAGE+1}
-    return render(request, "taller4_parte1.html",{"consulta1":consulta1,"consulta2":consulta2, "infoPage":infoPage})
+    return render(request, "taller4_parte1.html",{"consulta1":consulta1, "datta":datta, "infoPage":infoPage})
 
 def taller4_parte2(request):
     numero2=78
