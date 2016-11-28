@@ -27,7 +27,16 @@
 <td>{{icon.items.0.score|safe}}</td>
 <td>{{icon.items.0.tags|safe}}</td>
 <td id="pregunta">{{ icon.items.0.body|safe}}</td>
-<td>{{ icon.entidades}}</td>
+<td id="entidades">
+Date:{{icon.entidades.DATE}} <br>
+Person:{{icon.entidades.PERSON}}<br>
+Location:{{icon.entidades.LOCATION}}<br>
+Organization:{{icon.entidades.ORGANIZATION}}<br>
+Money:{{icon.entidades.MONEY}}<br>
+Percent:{{icon.entidades.PERCENT}}<br>
+Time:{{icon.entidades.TIME}}
+</td>
+
 </tr>
 {% endfor %}
 </tbody>
@@ -47,7 +56,7 @@
 <tr>
 <td>{{ icon2.items.0.title|safe}}</td>
 <td>{{ icon2.items.0.score|safe}}</td>
-<td>{{ icon2.items.0.body|safe}}</td>
+<td id="pregunta">{{ icon2.items.0.body|safe}}</td>
 </tr>
 {% endfor %}
 </tbody>
