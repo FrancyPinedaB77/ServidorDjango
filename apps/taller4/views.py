@@ -23,7 +23,7 @@ def taller4_parte1(request): #ESTA VISTA ME MUETRA LAS PREGUNTAS CON SU INFORMAC
     coleccion = bd.body_pregunta  #Seleccionar Coleccion  
     coleccion2=bd.body_respuestas
     count=coleccion.count()
-    numero_preguntas_pagina=2
+    numero_preguntas_pagina=1
     consulta1= coleccion.find().skip(numero_preguntas_pagina * (PAGE-1)).limit(numero_preguntas_pagina)
     pregunta_for_front=coleccion.find().skip(numero_preguntas_pagina * (PAGE-1)).limit(numero_preguntas_pagina)
     consulta2= coleccion2.find().skip(numero_preguntas_pagina * (PAGE-1)).limit(numero_preguntas_pagina)

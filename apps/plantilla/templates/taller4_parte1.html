@@ -7,6 +7,7 @@
 
 {% block content %}
 
+<div id="pregunta">
 
 <table class="table table-striped">
             <thead>
@@ -15,6 +16,7 @@
                 <th>Puntaje</th>
                 <th>Tags</th>
                 <th>Contenido de la pregunta</th>
+                <th>Entidades</th>
             </tr>
             </thead>
             <tbody> 
@@ -24,12 +26,13 @@
 <td>{{ icon.items.0.title|safe}}</td>
 <td>{{icon.items.0.score|safe}}</td>
 <td>{{icon.items.0.tags|safe}}</td>
-<td>{{ icon.items.0.body|safe}}</td>
+<td id="pregunta">{{ icon.items.0.body|safe}}</td>
+<td>{{ icon.entidades}}</td>
 </tr>
 {% endfor %}
 </tbody>
 </table>
-
+</div>
 <table class="table table-striped">
             <thead>
             <tr>
