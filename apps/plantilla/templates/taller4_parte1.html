@@ -43,6 +43,8 @@ Time:{{icon.entidades.5.TIME}}
 </tbody>
 </table>
 </div>
+
+
 <table class="table table-striped">
             <thead>
             <tr>
@@ -66,6 +68,34 @@ Organization:{{icon2.entidades.3.ORGANIZATION}}<br>
 Money:{{icon2.entidades.4.MONEY}}<br>
 Time:{{icon2.entidades.5.TIME}}
 </td
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+<!--ENRIQUECIMIENTO SEMANTICO DE LAS PREGUNTAS INFORMACION DE LAS PELICULAS -->
+
+
+<table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Resumen</th>
+                <th>Pais</th>
+                <th>Director</th>
+                <th>Score Imbd</th>
+            </tr>
+            </thead>
+            <tbody> 
+
+{% for iteracion3 in movies %}
+
+<tr>
+<td>{{iteracion3.union.Title}}</td>
+<td>{{iteracion3.union.Plot}}</td>
+<td>{{iteracion3.union.Country|safe}}</td>
+<td >{{iteracion3.union.Director|safe}}</td>
+<td >{{iteracion3.union.imdbRating|safe}}</td>
 </tr>
 {% endfor %}
 </tbody>
