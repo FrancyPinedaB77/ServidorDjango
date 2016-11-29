@@ -1,7 +1,7 @@
 from django.shortcuts import render
 #import ner
-from nltk.tag import StanfordNERTagger
-from nltk.tokenize import word_tokenize
+#from nltk.tag import StanfordNERTagger
+#from nltk.tokenize import word_tokenize
 import sys
 import SPARQLWrapper
 from SPARQLWrapper import SPARQLWrapper, JSON
