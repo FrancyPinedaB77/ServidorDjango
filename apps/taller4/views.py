@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import ner
+#import ner
 from nltk.tag import StanfordNERTagger
 from nltk.tokenize import word_tokenize
 import sys
