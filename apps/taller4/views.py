@@ -65,18 +65,14 @@ def relationship (request):
         PAGE = int(request.GET.get('page'))
     else:
         PAGE = 1
-    #Conexion a MongoDB
-    #cliente = MongoClient()#Inicializar objeto
-    #cliente = MongoClient('127.0.0.1', 27017)#Indicar parametros del servidor
-    #bd = cliente.taller4 #Seleccionar Schema
     coleccion = conn.bd.body_pregunta  #Seleccionar Coleccion  
-    
     count=coleccion.count()
     numero_preguntas_pagina=1
     consulta1= coleccion.find().skip(numero_preguntas_pagina * (PAGE-1)).limit(numero_preguntas_pagina)
+    consulta2= coleccion.find().skip(numero_preguntas_pagina * (PAGE-1)).limit(numero_preguntas_pagina)
          
     infoPage={'countPage': count, 'num_pages': count/numero_preguntas_pagina + 1, 'page':PAGE,'previous_page_number':PAGE-1, 'next_page_number':PAGE+1}
-    return render(request, "relation.html",{"consulta1":consulta1,"infoPage":infoPage})
+    return render(request, "relation.html",{"consulta1":consulta1,"consulta2":consulta2,"infoPage":infoPage})
 
 def taller4_parte2(request):
     numero2=78
