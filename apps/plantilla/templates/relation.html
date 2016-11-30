@@ -7,10 +7,7 @@
 
 {% block content %}
 
-<h1>VISTA DE RELACIONES</h1>
-
 <div id="pregunta">
-
 <table class="table table-striped">
             <thead>
             <tr>
@@ -20,21 +17,18 @@
             </tr>
             </thead>
             <tbody> 
-
 {% for icon in consulta1 %}
 <tr>
 <td>{{ icon.items.0.title|safe}}</td>
+ <td> 
+    {% for icon2 in icon.items.0.tags %}
+    <p>*{{icon2}}<br></p>
+    {% endfor %} </td>
 
-{% for icon2 in  icon.items.0.tags %}
-<h1></h1>
-<td> {{ icon2 }}  </td>
-{% endfor %}
-
-<td id="pregunta">
-{{ icon.items.0.body|safe}}<br> 
-Link: <a href={{icon.items.0.link|safe}}>Click Aqui para verificar la información</a> </td>
+<td id="pregunta">{{ icon.items.0.body|safe}}<br> Link: <a href={{icon.items.0.link|safe}}>Click Aqui para verificar la información</a> </td>
 </tr>
 {% endfor %}
+
 </tbody>
 </table>
 </div>
