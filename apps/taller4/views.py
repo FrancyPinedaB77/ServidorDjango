@@ -9,23 +9,26 @@ from django.core.paginator import Paginator
 from pymongo import MongoClient
 import json
 
+from conexionmongo import Connection
+
 from bson.json_util import dumps
 # Create your views here.
 def taller4_parte1(request): #ESTA VISTA ME MUETRA LAS PREGUNTAS CON SU INFORMACION 
+    conn = Connection()
     if request.GET.get('page') != None:
         PAGE = int(request.GET.get('page'))
     else:
         PAGE = 1
     #Conexion a MongoDB
-    cliente = MongoClient()#Inicializar objeto
-    cliente = MongoClient('127.0.0.1', 27017)#Indicar parametros del servidor
-    bd = cliente.taller4 #Seleccionar Schema
-    coleccion = bd.body_pregunta  #Seleccionar Coleccion  
-    coleccion2=bd.body_respuestas
-    coleccion_con_movies=bd.peliculas_en_preguntas
+    #cliente = MongoClient()#Inicializar objeto
+    #cliente = MongoClient('127.0.0.1', 27017)#Indicar parametros del servidor
+    #bd = cliente.taller4 #Seleccionar Schema
+    coleccion =conn.bd.body_pregunta  #Seleccionar Coleccion  
+    coleccion2=conn.bd.body_respuestas
+    coleccion_con_movies=conn.bd.peliculas_en_preguntas
 
-    coleccion_con_tuitrespuesta=bd.tuit_respuesta
-    coleccion_con_tuitpregunta=bd.tuit_preguntas
+    #coleccion_con_tuitrespuesta=conn.bd.tuit_respuesta
+    coleccion_con_tuitpregunta=conn.bd.tuit_preguntas
 
     count=coleccion.count()
     numero_preguntas_pagina=1
@@ -57,15 +60,16 @@ def taller4_parte1(request): #ESTA VISTA ME MUETRA LAS PREGUNTAS CON SU INFORMAC
 
 
 def relationship (request):
+    conn = Connection()
     if request.GET.get('page') != None:
         PAGE = int(request.GET.get('page'))
     else:
         PAGE = 1
     #Conexion a MongoDB
-    cliente = MongoClient()#Inicializar objeto
-    cliente = MongoClient('127.0.0.1', 27017)#Indicar parametros del servidor
-    bd = cliente.taller4 #Seleccionar Schema
-    coleccion = bd.body_pregunta  #Seleccionar Coleccion  
+    #cliente = MongoClient()#Inicializar objeto
+    #cliente = MongoClient('127.0.0.1', 27017)#Indicar parametros del servidor
+    #bd = cliente.taller4 #Seleccionar Schema
+    coleccion = conn.bd.body_pregunta  #Seleccionar Coleccion  
     
     count=coleccion.count()
     numero_preguntas_pagina=1
