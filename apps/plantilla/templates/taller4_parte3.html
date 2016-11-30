@@ -14,13 +14,6 @@
 <script  src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js">  </script>  
 
     <script>
-    var paises = L.icon({
-        iconUrl: '/static/images/iconomapa.png',
-        iconSize:     [15, 35], // size of the icon 38 95
-        iconAnchor:   [20, 42], // point of the icon which will correspond 22 94to marker's location
-        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-    });
-
        //organizaciones
     var lugares = L.icon({
         iconUrl: '/static/images/cursorrojo.svg',
@@ -32,6 +25,13 @@
         iconUrl: '/static/images/cursorazul.svg',
         iconSize:     [45, 45], // size of the icon 38 95
         iconAnchor:   [45, 45], // point of the icon which will correspond 22 94to marker's location
+        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    }); 
+
+        var per = L.icon({
+        iconUrl: '/static/images/cursormorado.png',
+        iconSize:     [25, 25], // size of the icon 38 95
+        iconAnchor:   [25, 25], // point of the icon which will correspond 22 94to marker's location
         popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
     }); 
 
@@ -63,7 +63,12 @@
                 .addTo(map);
                  
         }
-
+        for (var i = 0; i < personas.length; i++) {
+           marker = new L.marker([personas[i][1],personas[i][2]],{icon:per})
+                .bindPopup(personas[i][0])
+                .addTo(map);
+                 
+        }
               
     </script>
 
