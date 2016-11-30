@@ -24,12 +24,18 @@ def taller4_parte1(request): #ESTA VISTA ME MUETRA LAS PREGUNTAS CON SU INFORMAC
     coleccion2=bd.body_respuestas
     coleccion_con_movies=bd.peliculas_en_preguntas
 
+    coleccion_con_tuitrespuesta=bd.tuit_respuesta
+    coleccion_con_tuitpregunta=bd.tuit_preguntas
+
     count=coleccion.count()
     numero_preguntas_pagina=1
     consulta1= coleccion.find().skip(numero_preguntas_pagina * (PAGE-1)).limit(numero_preguntas_pagina)
     pregunta_for_front=coleccion.find().skip(numero_preguntas_pagina * (PAGE-1)).limit(numero_preguntas_pagina)
     consulta2= coleccion2.find().skip(numero_preguntas_pagina * (PAGE-1)).limit(numero_preguntas_pagina)
     consulta_movies=coleccion_con_movies.find().skip(numero_preguntas_pagina * (PAGE-1)).limit(numero_preguntas_pagina)
+
+    consulta_tuitpregunta=coleccion_con_tuitpregunta.find().skip(numero_preguntas_pagina * (PAGE-1)).limit(numero_preguntas_pagina)
+    
     #jsondata = {}
     n=1
     salida={}
@@ -42,9 +48,31 @@ def taller4_parte1(request): #ESTA VISTA ME MUETRA LAS PREGUNTAS CON SU INFORMAC
 
     datta=  coleccion2.find({"items.0.question_id": { '$in': datos} })
     movies= coleccion_con_movies.find({"items.0.question_id": { '$in': datos} })
+    tuits= coleccion_con_tuitpregunta.find({"items.0.question_id": { '$in': datos} })
+
     print movies
     infoPage={'countPage': count, 'num_pages': count/numero_preguntas_pagina + 1, 'page':PAGE,'previous_page_number':PAGE-1, 'next_page_number':PAGE+1}
-    return render(request, "taller4_parte1.html",{"consulta1":consulta1, "datta":datta,"movies":movies, "infoPage":infoPage})
+    return render(request, "taller4_parte1.html",{"consulta1":consulta1, "datta":datta,"movies":movies,"tuits":tuits ,"infoPage":infoPage})
+
+
+
+def relationship (request):
+    if request.GET.get('page') != None:
+        PAGE = int(request.GET.get('page'))
+    else:
+        PAGE = 1
+    #Conexion a MongoDB
+    cliente = MongoClient()#Inicializar objeto
+    cliente = MongoClient('127.0.0.1', 27017)#Indicar parametros del servidor
+    bd = cliente.taller4 #Seleccionar Schema
+    coleccion = bd.body_pregunta  #Seleccionar Coleccion  
+    
+    count=coleccion.count()
+    numero_preguntas_pagina=1
+    consulta1= coleccion.find().skip(numero_preguntas_pagina * (PAGE-1)).limit(numero_preguntas_pagina)
+         
+    infoPage={'countPage': count, 'num_pages': count/numero_preguntas_pagina + 1, 'page':PAGE,'previous_page_number':PAGE-1, 'next_page_number':PAGE+1}
+    return render(request, "relation.html",{"consulta1":consulta1,"infoPage":infoPage})
 
 def taller4_parte2(request):
     numero2=78
@@ -84,10 +112,5 @@ def taller4_parte3(request):
 
 def taller4_parte4(request):
     b="funciona"
-    st = StanfordNERTagger('/home/xubuntu/Taller4/nueva/classifiers/english.all.3class.distsim.crf.ser.gz','/home/xubuntu/Taller4/nueva/stanford-ner.jar', encoding='utf-8')
-    text = 'While in France, Christine Lagarde discussed short-term stimulus efforts in a recent interview with the Wall Street Journal.'
-    tokenized_text = word_tokenize(text)
-    classified_text = st.tag(tokenized_text)
-    print(classified_text)
 
-    return render(request, "taller4_parte4.html",{"classified_text":classified_text,"b":b})
+    return render(request, "taller4_parte4.html",{"b":b})

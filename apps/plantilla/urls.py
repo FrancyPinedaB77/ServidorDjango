@@ -10,6 +10,7 @@ urlpatterns = [
  	url(r'^Taller3$', views.taller3, name='taller3'),
     url(r'^tagcloud$', views.tagcloud, name='tagcloud'),
 	url(r'^punto3$', views.punto3, name='punto3'),
+	
 
 	]
 
