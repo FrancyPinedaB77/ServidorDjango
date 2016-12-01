@@ -26,9 +26,9 @@ def taller4_parte1(request): #ESTA VISTA ME MUETRA LAS PREGUNTAS CON SU INFORMAC
     coleccion =conn.bd.body_pregunta  #Seleccionar Coleccion  
     coleccion2=conn.bd.body_respuestas
     coleccion_con_movies=conn.bd.peliculas_en_preguntas
-
+    coleccion_con_movies_respuestas=conn.bd.peliculas_en_respuestas
     #coleccion_con_tuitrespuesta=conn.bd.tuit_respuesta
-    coleccion_con_tuitpregunta=conn.bd.tuit_preguntas
+    coleccion_con_tuitpregunta=conn.bd.tuit_preguntas2
 
     count=coleccion.count()
     numero_preguntas_pagina=1
@@ -51,11 +51,12 @@ def taller4_parte1(request): #ESTA VISTA ME MUETRA LAS PREGUNTAS CON SU INFORMAC
 
     datta=  coleccion2.find({"items.0.question_id": { '$in': datos} })
     movies= coleccion_con_movies.find({"items.0.question_id": { '$in': datos} })
+    movies_r= coleccion_con_movies_respuestas.find({"items.0.question_id": { '$in': datos} })
     tuits= coleccion_con_tuitpregunta.find({"items.0.question_id": { '$in': datos} })
 
     print movies
     infoPage={'countPage': count, 'num_pages': count/numero_preguntas_pagina + 1, 'page':PAGE,'previous_page_number':PAGE-1, 'next_page_number':PAGE+1}
-    return render(request, "taller4_parte1.html",{"consulta1":consulta1, "datta":datta,"movies":movies,"tuits":tuits ,"infoPage":infoPage})
+    return render(request, "taller4_parte1.html",{"consulta1":consulta1, "datta":datta,"movies":movies,"movies_r":movies_r,"tuits":tuits ,"infoPage":infoPage})
 
 
 

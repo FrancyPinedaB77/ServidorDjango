@@ -185,18 +185,27 @@
 
 </div>
 
+
+
 <div id="enriquecimiento">
 
     <div class="row-fluid">
         <div class="col-xs-12 col-sm-12 col-md-12" id="titulo">
             {% for iteracion3 in movies %}
-              {{iteracion3.union.Title}}
+                 {{iteracion3.union.Title}}
+
+            {% for iteracion4 in movies_r%}
+            {{iteracion4.union.Title}}
+
+
+
             <div id="line"><hr  style="" /></div>
         </div>
     </div>
 
     <div class="row-fluid">
       <div class="col-xs-12 col-sm-4 col-md-2" id="score_movie">
+
     <script>
         var score = {{iteracion3.union.imdbRating|safe}}
         console.log(score)
@@ -214,23 +223,44 @@
 
        <p align="center">{{iteracion3.union.imdbRating|safe}}</p>
 
+
+           <script>
+        var score = {{iteracion4.union.imdbRating|safe}}
+        console.log(score)
+        if (score <10) {
+            document.write('<center><img style="width: 30%;" src="static/images/star3.png" /></center>');
+            }
+        else if (score>20 && score<30){
+           document.write('<img style="width: 30%;" src="static/images/star2.png" />');
+        }
+
+        else{
+           document.write('<img style="width: 30%;" src="static/images/star1.png" />');
+        }
+    </script>
+
+       <p align="center">{{iteracion4.union.imdbRating|safe}}</p>
+
+
+
       </div>
 
       <div class="col-xs-12 col-sm-8 col-md-6" id="body_pregunta">
-          <p> {{iteracion3.union.Plot}}</p>
-          <p >Director:{{iteracion3.union.Director|safe}}</p>
-          <p>Pais:{{iteracion3.union.Country|safe}}</p>
+          <p> {{iteracion3.union.Plot}} {{iteracion4.union.Plot|safe}}</p>
+          <p >Director:{{iteracion3.union.Director|safe}} {{iteracion4.union.Director|safe}}</p>
+          <p>Pais:{{iteracion3.union.Country|safe}} {{iteracion4.union.Country|safe}}</p>
 
       </div>
 
      <div class="col-xs-12 col-sm-8 col-md-4" id="otros_movies">
-        <p >Actores:{{iteracion3.union.Actors|safe}}</p>
-        <p>Género:{{iteracion3.union.Genre|safe}}</p>
-        <p>Duración:{{iteracion3.union.Runtime|safe}}</p>
+        <p >Actores:{{iteracion3.union.Actors|safe}} {{iteracion4.union.Actors|safe}}</p>
+        <p>Género:{{iteracion3.union.Genre|safe}} {{iteracion4.union.Genre|safe}}</p>
+        <p>Duración:{{iteracion3.union.Runtime|safe}} {{iteracion4.union.Runtime|safe}} </p>
 
       </div>
     </div>
             {% endfor %}
+    {% endfor %}
 
 
 
