@@ -8,226 +8,261 @@
 {% block content %}
 
 <div id="pregunta">
-<!-- TABLA DE PREGUNTAS -->
-<table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Titulo</th>
-                <th>Puntaje</th>
-                <th>Tags</th>
-                <th>Contenido de la pregunta</th>
-                <th>Entidades</th>
-            </tr>
-            </thead>
-            <tbody> 
 
-{% for icon in consulta1 %}
-<tr>
-<td>{{ icon.items.0.title|safe}}</td>
-<td>{{icon.items.0.score|safe}}</td>
+<div class="row-fluid">
+    <br>
+    <div class="col-xs-12 col-sm-12 col-md-12" id="titulo">
+    {% for icon in consulta1 %}
+    {{ icon.items.0.title|safe}}
+        <div id="line"><hr  style="" /></div>
+    
+    </div>
+</div>
+</div>
 
- <td> 
-    {% for icon2 in icon.items.0.tags %}
-    <p>*{{icon2}}<br></p>
-    {% endfor %} </td>
 
-<td id="pregunta">
-{{ icon.items.0.body|safe}}<br> 
-Link: <a href={{icon.items.0.link|safe}}>Click Aqui para verificar la información</a> </td>
-<td >
+<div id="pregunta">
+<br>
+<div class="row-fluid">
+  <div class="col-xs-12 col-sm-4 col-md-2" id="score_pregunta">
+    <script>
+        var score = {{icon.items.0.score}}
+        console.log(score)
+        if (score <10) {
+            document.write('<center><img style="width: 30%;" src="static/images/star3.png" /></center>');
+            }
+        else if (score>20 && score<30){
+           document.write('<img style="width: 30%;" src="static/images/star2.png" />');
+        }
 
-    {% for icon2 in icon.entidades.0.PERSON %}
+        else{
+           document.write('<img style="width: 30%;" src="static/images/star1.png" />');
+        }
+    </script>
+
+       <p align="center">{{icon.items.0.score}}</p>
+
+      <div align="center">
+      {% for icon2 in icon.items.0.tags %}
+      <h4 id="tags">{{icon2}}</h4>
+      {% endfor %} </td>
+      </div>
+
+  </div>
+
+  <div class="col-xs-12 col-sm-8 col-md-9" id="body_pregunta">
+    <p>{{icon.items.0.body|safe}}</p>
+    <a href={{icon.items.0.link|safe}}><u>Click Aqui para verificar la información</u></a>
+    <div id="line"><hr  style="" /></div>
+  </div>
+
+  <div class="col-xs-12 col-sm-8 col-md-1" id="entidades">
+     {% for icon2 in icon.entidades.0.PERSON %}
         {% if  icon.entidades.0.PERSON != " "%}
         Personas:
-             <p>*{{icon2.p0}}{{icon2.p1}}{{icon2.p2}}{{icon2.p3}}{{icon2.p4}}{{icon2.p5}}{{icon2.p6}}{{icon2.p7}}{{icon2.p8}}</p>
+             <p>{{icon2.p0}}{{icon2.p1}}{{icon2.p2}}{{icon2.p3}}{{icon2.p4}}{{icon2.p5}}{{icon2.p6}}{{icon2.p7}}{{icon2.p8}}</p>
         {% endif %}
-    {% endfor %} 
+    {% endfor %}
 
     {% for icon3 in icon.entidades.1.LOCATION %}
         {% if  icon.entidades.1.LOCATION != " "%}
         Lugares:
-             <p>*{{icon3.y0}}{{icon3.y1}}{{icon3.y2}}{{icon3.y3}}{{icon3.y4}}{{icon3.y5}}{{icon3.y6}}{{icon3.y7}}{{icon3.y8}}</p>
+             <p>{{icon3.y0}}{{icon3.y1}}{{icon3.y2}}{{icon3.y3}}{{icon3.y4}}{{icon3.y5}}{{icon3.y6}}{{icon3.y7}}{{icon3.y8}}</p>
         {% endif %}
-    {% endfor %} 
+    {% endfor %}
 
     {% for icon3 in icon.entidades.2.DATE %}
         {% if  icon.entidades.2.DATE != " "%}
         Fechas:
-             <p>*{{icon3.k0}}{{icon3.k1}}{{icon3.k2}}{{icon3.k3}}{{icon3.k4}}{{icon3.k5}}{{icon3.k6}}{{icon3.k7}}{{icon3.k8}}</p>
+             <p>{{icon3.k0}}{{icon3.k1}}{{icon3.k2}}{{icon3.k3}}{{icon3.k4}}{{icon3.k5}}{{icon3.k6}}{{icon3.k7}}{{icon3.k8}}</p>
         {% endif %}
-    {% endfor %} 
+    {% endfor %}
 
     {% for icon3 in icon.entidades.3.ORGANIZATION %}
         {% if  icon.entidades.3.ORGANIZATION != " "%}
         Organizaciones:
-             <p>*{{icon3.l0}}{{icon3.l1}}{{icon3.l2}}{{icon3.l3}}{{icon3.l4}}{{icon3.l5}}{{icon3.l6}}{{icon3.l7}}{{icon3.l8}}</p>
+             <p>{{icon3.l0}}{{icon3.l1}}{{icon3.l2}}{{icon3.l3}}{{icon3.l4}}{{icon3.l5}}{{icon3.l6}}{{icon3.l7}}{{icon3.l8}}</p>
         {% endif %}
-    {% endfor %} 
-
-
+    {% endfor %}
 
     {% for icon3 in icon.entidades.4.MONEY %}
         {% if  icon.entidades.4.MONEY != " "%}
         Dinero:
-             <p>*{{icon3.m0}}{{icon3.m1}}{{icon3.m2}}{{icon3.m3}}{{icon3.m4}}{{icon3.m5}}{{icon3.m6}}{{icon3.m7}}{{icon3.m8}}</p>
+             <p>{{icon3.m0}}{{icon3.m1}}{{icon3.m2}}{{icon3.m3}}{{icon3.m4}}{{icon3.m5}}{{icon3.m6}}{{icon3.m7}}{{icon3.m8}}</p>
         {% endif %}
-    {% endfor %} 
-
+    {% endfor %}
 
     {% for icon3 in icon.entidades.5.TIME %}
         {% if  icon.entidades.5.TIME != " "%}
         Tiempos:
-             <p>*{{icon3.n0}}{{icon3.n1}}{{icon3.n2}}{{icon3.n3}}{{icon3.n4}}{{icon3.n5}}{{icon3.n6}}{{icon3.n7}}{{icon3.n8}}</p>
+             <p>{{icon3.n0}}{{icon3.n1}}{{icon3.n2}}{{icon3.n3}}{{icon3.n4}}{{icon3.n5}}{{icon3.n6}}{{icon3.n7}}{{icon3.n8}}</p>
         {% endif %}
-    {% endfor %} 
+    {% endfor %}
 
-</td>
 
-</tr>
-{% endfor %}
-</tbody>
-</table>
+  </div>
+      {% endfor %}
+
 </div>
-
-<!-- TABLA DE RESPUESTAS -->
-<table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Puntaje</th>
-                <th>Contenido de la Respuesta</th>
-            </tr>
-            </thead>
-            <tbody> 
-
-{% for icon2 in datta %}
-<tr>
-<td>{{ icon2.items.0.title|safe}}</td>
-<td>{{ icon2.items.0.score|safe}}</td>
-<td id="pregunta">{{ icon2.items.0.body|safe}}</td>
-<td >
+<!---EMPIEZA LA respuesta -->
 
 
-{% for icon3 in icon2.entidades.0.PERSON %}
+<div class="row-fluid">
+    <div class="col-xs-12 col-sm-4 col-md-2" id="score_pregunta2">
+        {% for icon2 in datta %}
+    <script>
+        var score = {{icon2.items.0.score}}
+        console.log(score)
+        if (score <10) {
+            document.write('<center><img style="width: 30%;" src="static/images/star3.png" /></center>');
+            }
+        else if (score>20 && score<30){
+           document.write('<img style="width: 30%;" src="static/images/star2.png" />');
+        }
+
+        else{
+           document.write('<img style="width: 30%;" src="static/images/star1.png" />');
+        }
+    </script>
+
+       <p align="center">{{icon2.items.0.score}}</p>
+      </div>
+
+        <div class="col-xs-12 col-sm-4 col-md-9" id="body_pregunta2">
+            <p>{{icon2.items.0.body|safe}}</p>
+        </div>
+
+    <div class="col-xs-12 col-sm-4 col-md-1" id="entidades2">
+    {% for icon3 in icon2.entidades.0.PERSON %}
         {% if  icon2.entidades.0.PERSON != " "%}
         Personas:
-             <p>*{{icon3.p0}}{{icon3.p1}}{{icon3.p2}}{{icon3.p3}}{{icon3.p4}}{{icon3.p5}}{{icon3.p6}}{{icon3.p7}}{{icon3.p8}}</p>
+             <p>{{icon3.p0}}{{icon3.p1}}{{icon3.p2}}{{icon3.p3}}{{icon3.p4}}{{icon3.p5}}{{icon3.p6}}{{icon3.p7}}{{icon3.p8}}</p>
         {% endif %}
-    {% endfor %} 
+    {% endfor %}
 
     {% for icon3 in icon2.entidades.1.LOCATION %}
         {% if  icon2.entidades.1.LOCATION != " "%}
         Lugares:
-             <p>*{{icon3.y0}}{{icon3.y1}}{{icon3.y2}}{{icon3.y3}}{{icon3.y4}}{{icon3.y5}}{{icon3.y6}}{{icon3.y7}}{{icon3.y8}}</p>
+             <p>{{icon3.y0}}{{icon3.y1}}{{icon3.y2}}{{icon3.y3}}{{icon3.y4}}{{icon3.y5}}{{icon3.y6}}{{icon3.y7}}{{icon3.y8}}</p>
         {% endif %}
-    {% endfor %} 
+    {% endfor %}
 
     {% for icon3 in icon2.entidades.2.DATE %}
         {% if  icon2.entidades.2.DATE != " "%}
         Fechas:
-             <p>*{{icon3.k0}}{{icon3.k1}}{{icon3.k2}}{{icon3.k3}}{{icon3.k4}}{{icon3.k5}}{{icon3.k6}}{{icon3.k7}}{{icon3.k8}}</p>
+             <p>{{icon3.k0}}{{icon3.k1}}{{icon3.k2}}{{icon3.k3}}{{icon3.k4}}{{icon3.k5}}{{icon3.k6}}{{icon3.k7}}{{icon3.k8}}</p>
         {% endif %}
-    {% endfor %} 
+    {% endfor %}
 
     {% for icon3 in icon2.entidades.3.ORGANIZATION %}
         {% if  icon2.entidades.3.ORGANIZATION != " "%}
         Organizaciones:
-             <p>*{{icon3.l0}}{{icon3.l1}}{{icon3.l2}}{{icon3.l3}}{{icon3.l4}}{{icon3.l5}}{{icon3.l6}}{{icon3.l7}}{{icon3.l8}}</p>
+             <p>{{icon3.l0}}{{icon3.l1}}{{icon3.l2}}{{icon3.l3}}{{icon3.l4}}{{icon3.l5}}{{icon3.l6}}{{icon3.l7}}{{icon3.l8}}</p>
         {% endif %}
-    {% endfor %} 
-
-
+    {% endfor %}
 
     {% for icon3 in icon2.entidades.4.MONEY %}
         {% if  icon2.entidades.4.MONEY != " "%}
         Dinero:
-             <p>*{{icon3.m0}}{{icon3.m1}}{{icon3.m2}}{{icon3.m3}}{{icon3.m4}}{{icon3.m5}}{{icon3.m6}}{{icon3.m7}}{{icon3.m8}}</p>
+             <p>{{icon3.m0}}{{icon3.m1}}{{icon3.m2}}{{icon3.m3}}{{icon3.m4}}{{icon3.m5}}{{icon3.m6}}{{icon3.m7}}{{icon3.m8}}</p>
         {% endif %}
-    {% endfor %} 
-
+    {% endfor %}
 
     {% for icon3 in icon2.entidades.5.TIME %}
         {% if  icon2.entidades.5.TIME != " "%}
         Tiempos:
-             <p>*{{icon3.n0}}{{icon3.n1}}{{icon3.n2}}{{icon3.n3}}{{icon3.n4}}{{icon3.n5}}{{icon3.n6}}{{icon3.n7}}{{icon3.n8}}</p>
+             <p>{{icon3.n0}}{{icon3.n1}}{{icon3.n2}}{{icon3.n3}}{{icon3.n4}}{{icon3.n5}}{{icon3.n6}}{{icon3.n7}}{{icon3.n8}}</p>
         {% endif %}
-    {% endfor %} 
-
-<!-- Person:{{icon2.entidades.0.PERSON}}<br>
-Location:{{icon2.entidades.1.LOCATION.0.y0}}<br>
-Date:{{icon2.entidades.2.DATE}} <br>
-Organization:{{icon2.entidades.3.ORGANIZATION}}<br>
-Money:{{icon2.entidades.4.MONEY}}<br>
-Time:{{icon2.entidades.5.TIME}} -->
+    {% endfor %}
 
 
-</td
-</tr>
+
+    </div>
+
+</div>
 {% endfor %}
-</tbody>
-</table>
+
+
+</div>
+
+<div id="enriquecimiento">
+
+    <div class="row-fluid">
+        <div class="col-xs-12 col-sm-12 col-md-12" id="titulo">
+            {% for iteracion3 in movies %}
+              {{iteracion3.union.Title}}
+            <div id="line"><hr  style="" /></div>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="col-xs-12 col-sm-4 col-md-2" id="score_movie">
+    <script>
+        var score = {{iteracion3.union.imdbRating|safe}}
+        console.log(score)
+        if (score <10) {
+            document.write('<center><img style="width: 30%;" src="static/images/star3.png" /></center>');
+            }
+        else if (score>20 && score<30){
+           document.write('<img style="width: 30%;" src="static/images/star2.png" />');
+        }
+
+        else{
+           document.write('<img style="width: 30%;" src="static/images/star1.png" />');
+        }
+    </script>
+
+       <p align="center">{{iteracion3.union.imdbRating|safe}}</p>
+
+      </div>
+
+      <div class="col-xs-12 col-sm-8 col-md-6" id="body_pregunta">
+          <p> {{iteracion3.union.Plot}}</p>
+          <p >Director:{{iteracion3.union.Director|safe}}</p>
+          <p>Pais:{{iteracion3.union.Country|safe}}</p>
+
+      </div>
+
+     <div class="col-xs-12 col-sm-8 col-md-4" id="otros_movies">
+        <p >Actores:{{iteracion3.union.Actors|safe}}</p>
+        <p>Género:{{iteracion3.union.Genre|safe}}</p>
+        <p>Duración:{{iteracion3.union.Runtime|safe}}</p>
+
+      </div>
+    </div>
+            {% endfor %}
+
+
+
+
+
+
+    <div class="row-fluid">
+        <div class="col-xs-12 col-sm-12 col-md-12" id="titulo">
+            TUITS RELACIONADOS
+            <div id="line"><hr  style="" /></div>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="col-xs-12 col-sm-12 col-md-12" id="tuits">
+        {% for iteracion4 in tuits %}
+
+        <p>*{{iteracion4.a}}</p>
+        <p>*{{iteracion4.e}}</p>
+        <p>*{{iteracion4.i}}</p>
+        <p>*{{iteracion4.o}}</p>
+        {% endfor %}
+
+    </div>
+
+    </div>
+
+
+</div>
+
 
 <!--ENRIQUECIMIENTO SEMANTICO DE LAS PREGUNTAS INFORMACION DE LAS PELICULAS -->
-
-
-<table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Score Imbd</th>           
-                <th>Título</th>
-                <th>Resumen</th>
-                <th>Director</th>
-                <th>Pais</th>
-                <th>Actores</th>
-                <th>Género</th>
-                <th>Duración</th>                
-                <th>Score Imbd</th>
-            </tr>
-            </thead>
-            <tbody> 
-
-{% for iteracion3 in movies %}
-
-<tr>
-<td >{{iteracion3.union.imdbRating|safe}}</td>
-<td>{{iteracion3.union.Title}}</td>
-<td>{{iteracion3.union.Plot}}</td>
-<td >{{iteracion3.union.Director|safe}}</td>
-<td>{{iteracion3.union.Country|safe}}</td>
-<td >{{iteracion3.union.Actors|safe}}</td>
-<td >{{iteracion3.union.Genre|safe}}</td>
-<td >{{iteracion3.union.Runtime|safe}}</td>
-<td >{{iteracion3.union.imdbRating|safe}}</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-
-
-<!-- TUITS PREGUNTAS-->
-<table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Tuits</th>
-                <th>Tuits</th>
-                <th>Tuits</th>
-                <th>Tuits</th>
-            </tr>
-            </thead>
-            <tbody> 
-
-{% for iteracion4 in tuits %}
-
-<tr>
-<td>{{iteracion4.a}}</td>
-<td>{{iteracion4.e}}</td>
-<td>{{iteracion4.i}}</td>
-<td>{{iteracion4.o}}</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-
 <div class="col-md-12 portfolio-item">
             <hr>
             <div class="pagination">

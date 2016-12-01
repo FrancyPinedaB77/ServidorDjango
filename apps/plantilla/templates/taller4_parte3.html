@@ -45,17 +45,13 @@
             maxZoom: 18,
             }).addTo(map);
 
-        //var markerClusters = L.markerClusterGroup();
-
         for (var i = 0; i < localizaciones.length; i++) {
             marker = new L.marker([localizaciones[i][1],localizaciones[i][2]],{icon:lugares})
 
                 .bindPopup(localizaciones[i][0])
                 .addTo(map);
-                //markerClusters.addLayer( marker );
         }
-         //map.addLayer( markerClusters );  
- 
+
 
         for (var i = 0; i < organizaciones.length; i++) {
            marker = new L.marker([organizaciones[i][1],organizaciones[i][2]],{icon:empresas})
