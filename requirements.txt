@@ -44,7 +44,7 @@ html5lib==0.999
 httplib2==0.8
 image==1.4.4
 jmespath==0.9.0
-lxml==3.3.3
+lxml==4.6.2
 mongoengine==0.8.0
 ndg-httpsclient==0.4.2
 oauth==1.0.1
