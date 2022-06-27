@@ -71,7 +71,7 @@ python-debian==0.1.21-nmu2ubuntu2
 python-http-client==1.2.3
 python-memcached==1.57
 pyxdg==0.25
-reportlab==3.0
+reportlab==3.5.55
 requests==2.9.1
 requests-oauthlib==0.6.1
 roman==2.0.0
